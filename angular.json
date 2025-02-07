@@ -98,6 +98,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "zaal:build:production",
+              "serveTarget": "zaal:serve:production"
+            },
+            "development": {
+              "buildTarget": "zaal:build:development",
+              "serveTarget": "zaal:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

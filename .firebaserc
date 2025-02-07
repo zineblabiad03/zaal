@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "zaal-d2b99": {
+      "hosting": {
+        "zaal": [
+          "zaal-d2b99"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "zaal-d2b99"
+  }
+}
