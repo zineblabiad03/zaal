@@ -1,0 +1,19 @@
+<div>
+    <h2>Search Flights</h2>
+    <label>Origin: <input [(ngModel)]="origin" /></label>
+    <label>Destination: <input [(ngModel)]="destination" /></label>
+    <label>Departure Date: <input type="date" [(ngModel)]="departureDate" /></label>
+    <button (click)="searchFlights()">Search</button>
+  
+    <div *ngIf="flights.length">
+      <h3>Flight Results</h3>
+      <ul>
+        <li *ngFor="let flight of flights">
+          <strong>{{ flight.itineraries[0].segments[0].departure.iataCode }} → {{ flight.itineraries[0].segments[0].arrival.iataCode }}</strong>
+          <p>Departure: {{ flight.itineraries[0].segments[0].departure.at }}</p>
+          <p>Price: {{ flight.price.total }} {{ flight.price.currency }}</p>
+          <p>Duration: {{ flight.itineraries[0].segments[0].duration }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>

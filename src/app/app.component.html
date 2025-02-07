@@ -1,12 +1,2 @@
-<h1>Test Amadeus API</h1>
-
-<div>
-  <h2>Flight Offers (Between NYC and LAX for 2025-02-01)</h2>
-  <ul>
-    <li *ngFor="let offer of flightOffers">
-      Price: {{ offer.price.total }} {{ offer.price.currency }}<br>
-      From: {{ offer.itineraries[0].segments[0].departure.iataCode }}<br>
-      To: {{ offer.itineraries[0].segments[0].arrival.iataCode }}
-    </li>
-  </ul>
-</div>
+<h1>Flight Search App</h1>
+<app-flight-search></app-flight-search>
