@@ -1,5 +1,29 @@
-<h2>Login</h2>
-<input type="email" placeholder="Email" [(ngModel)]="email" />
-<input type="password" placeholder="Password" [(ngModel)]="password" />
-<button (click)="signIn()">Login</button>
-<button (click)="signUp()">Sign Up</button>
+<div class="login-container">
+    <div class="login-card">
+      <h1>Bienvenue </h1>
+  
+      <!-- Email Input -->
+      <div class="input-group">
+        <label>Email</label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input matInput type="email" placeholder="Entrez votre email" required>
+      </div>
+  
+      <!-- Password Input -->
+      <div class="input-group">
+        <label>Mot de passe</label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput type="password" placeholder="Entrez votre mot de passe" required>
+      </div>
+  
+      <!-- Buttons -->
+      <div class="buttons">
+        <button mat-raised-button color="primary">
+          <mat-icon>login</mat-icon> Connexion
+        </button>
+        <button mat-raised-button color="accent">
+          <mat-icon>person_add</mat-icon> Inscription
+        </button>
+      </div>
+    </div>
+  </div>

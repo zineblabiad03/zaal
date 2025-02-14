@@ -4,14 +4,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FlightSearchComponent } from './components/flight-search/flight-search.component';
 
+import {MatIcon, MatIconModule} from '@angular/material/icon';
+
 import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './components/auth/auth.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -24,6 +30,8 @@ import { AuthComponent } from './components/auth/auth.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatFormFieldModule,
+    MatIcon,
     provideFirebaseApp(() => initializeApp({
       "projectId":"zaal-d2b99",
       "appId":"1:517938653680:web:854cd14199e6a9d814d535",
@@ -35,7 +43,9 @@ import { AuthComponent } from './components/auth/auth.component';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
