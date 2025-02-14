@@ -1,6 +1,11 @@
 <nav>
-    <a routerLink="/login">Login</a> | <a routerLink="/search-flight">Search Flight</a>
+    <a routerLink="/login">Login</a> |
+    <a routerLink="/search-flight">Search Flight</a> |
+    <button (click)="logout()">Logout</button>
 </nav>
 <hr />
 
-<router-outlet></router-outlet>
+<div *ngIf="!authService.getIsAuthInitialized()">Loading...</div>
+<div *ngIf="authService.getIsAuthInitialized()">
+    <router-outlet></router-outlet>
+</div>

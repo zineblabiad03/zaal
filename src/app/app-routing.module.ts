@@ -8,7 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path: 'login', component: AuthComponent},
-  { path: 'search-flight', component: FlightSearchComponent, canActivate: [AuthGuard] },
+  {path: 'search-flight', component: FlightSearchComponent, canActivate: [AuthGuard] },
   {path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 

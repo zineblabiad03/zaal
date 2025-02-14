@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, user } from '@angular/fire/auth';
-import { Observable, map } from 'rxjs';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private isAuthenticated: boolean = false;
+  private authInitialized: boolean = false;
 
-  constructor(private auth: Auth) { }
+  constructor(private auth: Auth) {
+    onAuthStateChanged(this.auth, (user) => {
+      this.isAuthenticated = !!user;
+      this.authInitialized = true;
+    });
+  }
 
-  signUp(email: string, password: string) {
-    createUserWithEmailAndPassword(this.auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+  async signUp(email: string, password: string): Promise<boolean> {
+    try {
+      await createUserWithEmailAndPassword(this.auth, email, password);
+      console.log('Success');
+      return true;
+    } catch (error: any) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log('Failed:', errorCode, errorMessage);
+      return false;
+    }
   }
 
   async signIn(email: string, password: string): Promise<boolean> {
@@ -46,10 +52,12 @@ export class AuthService {
   }
 
 
-  isAuthenticated(): Observable<boolean> {
-    return user(this.auth).pipe(
-      map((firebaseUser) => !!firebaseUser)
-    );
+  getIsAuthenticated(): boolean {
+    return this.isAuthenticated;
+  }
+
+  getIsAuthInitialized(): boolean {
+    return this.authInitialized;
   }
 
 }

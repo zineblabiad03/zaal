@@ -13,6 +13,15 @@ export class AuthComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  async signUp() {
+    const success = await this.authService.signUp(this.email, this.password);
+    if (success) {
+        this.router.navigate(['/search-flight']);
+    } else {
+        console.error('Failed');
+    }
+  }
+
   async signIn() {
     const success = await this.authService.signIn(this.email, this.password);
     if (success) {
