@@ -11,14 +11,12 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FlightSearchComponent } from './components/flight-search/flight-search.component';
 
 import { FormsModule } from '@angular/forms';
-import { SigninComponent } from './components/signin/signin.component';
 import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FlightSearchComponent,
-    SigninComponent,
     AuthComponent
   ],
   imports: [
