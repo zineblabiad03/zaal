@@ -12,7 +12,7 @@ import { FlightSearchComponent } from './components/flight-search/flight-search.
 
 import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './components/auth/auth.component';
-import { VolsComponent } from './compenents/vols/vols.component';
+import { VolsComponent } from './components/vols/vols.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { ConnexionComponent } from './components/connexion/connexion.component';
 
