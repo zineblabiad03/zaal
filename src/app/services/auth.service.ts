@@ -35,13 +35,16 @@ export class AuthService {
     }
   }
 
-  signOut() {
-    signOut(this.auth).then(() => {
-      // Sign-out successful.
-    }).catch((error) => {
-      // An error happened.
-    });
+  async signOut(): Promise<boolean> {
+    try {
+      await signOut(this.auth);
+      return true;
+    } catch (error) {
+      console.error('Sign Out Error:', error);
+      return false;
+    }
   }
+
 
   isAuthenticated(): Observable<boolean> {
     return user(this.auth).pipe(

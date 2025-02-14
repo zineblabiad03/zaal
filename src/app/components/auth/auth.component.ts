@@ -22,4 +22,13 @@ export class AuthComponent {
     }
   }
 
+  async signOut() {
+    const success = await this.authService.signOut();
+    if (success) {
+      console.error('Log out');
+    } else {
+        console.error('Failed');
+    }
+  }
+
 }
