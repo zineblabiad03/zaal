@@ -1,1 +1,100 @@
-/* You can add global styles to this file, and also import other style files */
+/* Fond en dégradé dynamique */
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: url('assets/view-3d-airplane-with-wings-engine.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    * {
+  color: white !important;
+}
+
+}
+  
+  /* Conteneur principal */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Zone de connexion stylisée */
+  .login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 400px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Animation d'apparition */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Header stylisé */
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff4b5c;
+    margin-bottom: 20px;
+  }
+  
+  /* Champs de saisie plus grands */
+  .input-group {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+    color: #444;
+  }
+  
+  /* Champs plus grands */
+  mat-form-field {
+    width: 100%;
+    height: 50px;
+  }
+  
+  input {
+    font-size: 16px;
+    height: 45px;
+  }
+  
+  /* Boutons plus modernes */
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  button {
+    width: 48%;
+    font-size: 18px;
+    padding: 12px 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Effet au survol */
+  button:hover {
+    transform: scale(1.05);
+  }
+  

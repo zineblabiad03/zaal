@@ -1,19 +1,34 @@
-<div>
-    <h2>Search Flights</h2>
-    <label>Origin: <input [(ngModel)]="origin" /></label>
-    <label>Destination: <input [(ngModel)]="destination" /></label>
-    <label>Departure Date: <input type="date" [(ngModel)]="departureDate" /></label>
-    <button (click)="searchFlights()">Search</button>
-  
-    <div *ngIf="flights.length">
-      <h3>Flight Results</h3>
-      <ul>
-        <li *ngFor="let flight of flights">
-          <strong>{{ flight.itineraries[0].segments[0].departure.iataCode }} → {{ flight.itineraries[0].segments[0].arrival.iataCode }}</strong>
-          <p>Departure: {{ flight.itineraries[0].segments[0].departure.at }}</p>
-          <p>Price: {{ flight.price.total }} {{ flight.price.currency }}</p>
-          <p>Duration: {{ flight.itineraries[0].segments[0].duration }}</p>
-        </li>
-      </ul>
-    </div>
+<div class="search-container">
+  <h2>🔍 Rechercher un vol</h2>
+
+  <div class="search-fields">
+    <mat-form-field appearance="outline">
+      <mat-label>Origine</mat-label>
+      <input matInput [(ngModel)]="origin">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Destination</mat-label>
+      <input matInput [(ngModel)]="destination">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date de départ</mat-label>
+      <input matInput type="date" [(ngModel)]="departureDate">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="searchFlights()">Rechercher</button>
   </div>
+
+  <div *ngIf="flights.length" class="results">
+    <h3>✈️ Résultats des vols</h3>
+    <ul>
+      <li *ngFor="let flight of flights">
+        <strong>{{ flight.itineraries[0].segments[0].departure.iataCode }} → {{ flight.itineraries[0].segments[0].arrival.iataCode }}</strong>
+        <p>📅 Départ : {{ flight.itineraries[0].segments[0].departure.at }}</p>
+        <p>💰 Prix : {{ flight.price.total }} {{ flight.price.currency }}</p>
+        <p>⏳ Durée : {{ flight.itineraries[0].segments[0].duration }}</p>
+      </li>
+    </ul>
+  </div>
+</div>
