@@ -16,14 +16,21 @@ import {MatIcon, MatIconModule} from '@angular/material/icon';
 
 import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './components/auth/auth.component';
+
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { VolsComponent } from './components/vols/vols.component';
+import { InscriptionComponent } from './components/inscription/inscription.component';
+import { ConnexionComponent } from './components/connexion/connexion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FlightSearchComponent,
-    AuthComponent
+    AuthComponent,
+    VolsComponent,
+    InscriptionComponent,
+    ConnexionComponent
   ],
   imports: [
     BrowserModule,
