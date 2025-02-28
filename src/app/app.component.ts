@@ -15,7 +15,7 @@ export class AppComponent {
   async logout() {
     const success = await this.authService.signOut();
     if (success) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/sign-in']);
     }
   }
 

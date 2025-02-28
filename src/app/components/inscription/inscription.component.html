@@ -1,16 +1,14 @@
 <h2>Inscription</h2>
 
-<form (submit)="inscrire()">
-  <label>Email :</label>
-  <input type="email" [(ngModel)]="email" required />
+<label>Email :</label>
+<input type="email" [(ngModel)]="email" required />
 
-  <label>Mot de passe :</label>
-  <input type="password" [(ngModel)]="motDePasse" required />
+<label>Mot de passe :</label>
+<input type="password" [(ngModel)]="motDePasse" required />
 
-  <label>Confirmer le mot de passe :</label>
-  <input type="password" [(ngModel)]="confirmerMotDePasse" required />
+<label>Confirmer le mot de passe :</label>
+<input type="password" [(ngModel)]="confirmerMotDePasse" required />
 
-  <button type="submit">S'inscrire</button>
+<button type="submit" (click)="inscrire()">S'inscrire</button>
 
-  <p *ngIf="messageErreur" style="color: red;">{{ messageErreur }}</p>
-</form>
+<p *ngIf="messageErreur" style="color: red;">{{ messageErreur }}</p>

@@ -19,7 +19,7 @@ export class ConnexionComponent {
     if (success) {
         this.router.navigate(['/search-flight']);
     } else {
-        console.error('Failed');
+        console.error('Failed to sign in.');
     }
   }
 }

@@ -1,12 +1,11 @@
 <h2>Connexion</h2>
-<form (submit)="connecter()">
-  <label>Email :</label>
-  <input type="email" [(ngModel)]="email" required />
 
-  <label>Mot de passe :</label>
-  <input type="password" [(ngModel)]="motDePasse" required />
+<label>Email :</label>
+<input type="email" [(ngModel)]="email" required />
 
-  <button type="submit">Se connecter</button>
+<label>Mot de passe :</label>
+<input type="password" [(ngModel)]="motDePasse" required />
 
-  <p *ngIf="messageErreur" style="color: red;">{{ messageErreur }}</p>
-</form>
+<button type="submit" (click)="connecter()">Se connecter</button>
+
+<p *ngIf="messageErreur" style="color: red;">{{ messageErreur }}</p>
