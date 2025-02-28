@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard';
-
 import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { FlightSearchComponent } from './components/flight-search/flight-search.component';
