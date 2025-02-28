@@ -34,7 +34,8 @@ export class InscriptionComponent {
 
     const success = await this.authService.signUp(this.email, this.motDePasse);
     if (success) {
-        this.router.navigate(['/sign-in']);
+      await this.authService.signOut();
+      this.router.navigate(['/sign-in'], {queryParams: { compteCree: 'true'}});
     } else {
       console.error('Failed to sign up.');
     }

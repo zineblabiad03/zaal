@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut, onAuthStateChanged } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +15,17 @@ export class AuthService {
     });
   }
 
-  async signUp(email: string, password: string): Promise<boolean> {
+  async signUp(email: string, password: string): Promise<boolean> { 
+    // return createUserWithEmailAndPassword(this.auth, email, password).then(utilisateur => {
+    //   console.log(utilisateur);
+    //   sendEmailVerification(utilisateur.user).then(emailverif => {
+    //     console.log(emailverif);
+    //   });
+    //   console.log('Success');
+    // });
     try {
-      await createUserWithEmailAndPassword(this.auth, email, password);
+      const utilisateur = await createUserWithEmailAndPassword(this.auth, email, password);
+      await sendEmailVerification(utilisateur.user);
       console.log('Success');
       return true;
     } catch (error: any) {
@@ -30,7 +38,12 @@ export class AuthService {
 
   async signIn(email: string, password: string): Promise<boolean> {
     try {
-      await signInWithEmailAndPassword(this.auth, email, password);
+      const utilisateur = await signInWithEmailAndPassword(this.auth, email, password);
+      if (!utilisateur.user.emailVerified) {
+        await signOut(this.auth);
+        console.log("Echec de verification d'email");
+        return false;
+      }
       console.log('Success');
       return true;
     } catch (error: any) {
