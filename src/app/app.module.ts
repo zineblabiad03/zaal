@@ -22,6 +22,8 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { VolsComponent } from './components/vols/vols.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { ConnexionComponent } from './components/connexion/connexion.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,10 @@ import { ConnexionComponent } from './components/connexion/connexion.component';
     FormsModule,
     MatFormFieldModule,
     MatIcon,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
     provideFirebaseApp(() => initializeApp({
       "projectId":"zaal-d2b99",
       "appId":"1:517938653680:web:854cd14199e6a9d814d535",

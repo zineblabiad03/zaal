@@ -1,6 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
+/* Fond en dégradé dynamique */
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -10,18 +8,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    * {
+  color: white !important;
 }
 
-/* Conteneur principal */
-.login-container {
+}
+  
+  /* Conteneur principal */
+  .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-}
-
-/* Zone de connexion stylisée */
-.login-card {
+  }
+  
+  /* Zone de connexion stylisée */
+  .login-card {
     background: white;
     padding: 40px;
     border-radius: 15px;
@@ -29,49 +31,70 @@ body {
     text-align: center;
     width: 400px;
     animation: fadeIn 1s ease-in-out;
-}
-
-/* Animation d'apparition */
-@keyframes fadeIn {
+  }
+  
+  /* Animation d'apparition */
+  @keyframes fadeIn {
     from {
-        opacity: 0;
-        transform: translateY(-30px);
+      opacity: 0;
+      transform: translateY(-30px);
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
+      opacity: 1;
+      transform: translateY(0);
     }
-}
-
-/* Header stylisé */
-h1 {
+  }
+  
+  /* Header stylisé */
+  h1 {
     font-size: 28px;
     font-weight: bold;
     color: #ff4b5c;
     margin-bottom: 20px;
-}
-
-/* Champs de saisie plus grands */
-.input-group {
+  }
+  
+  /* Champs de saisie plus grands */
+  .input-group {
     text-align: left;
     margin-bottom: 15px;
-}
-
-label {
+  }
+  
+  label {
     font-weight: bold;
     font-size: 14px;
     margin-bottom: 5px;
     display: block;
     color: #444;
-}
-
-/* Champs plus grands */
-mat-form-field {
+  }
+  
+  /* Champs plus grands */
+  mat-form-field {
     width: 100%;
     height: 50px;
-}
-
-input {
+  }
+  
+  input {
     font-size: 16px;
     height: 45px;
-}
+  }
+  
+  /* Boutons plus modernes */
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  button {
+    width: 48%;
+    font-size: 18px;
+    padding: 12px 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Effet au survol */
+  button:hover {
+    transform: scale(1.05);
+  }
+  
