@@ -16,7 +16,7 @@ export class AuthComponent {
   async signUp() {
     const success = await this.authService.signUp(this.email, this.password);
     if (success) {
-        this.router.navigate(['/search-flight']);
+        this.router.navigate(['/sign-in']);
     } else {
         console.error('Failed');
     }

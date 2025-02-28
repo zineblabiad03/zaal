@@ -1,8 +1,9 @@
 <nav>
-    <a routerLink="/login">Login</a> |
+    <a routerLink="/sign-in">Sign In</a> |
+    <a routerLink="/sign-up">Sign Up</a> |
     <a routerLink="/search-flight">Search Flight</a> |
     <button (click)="logout()">Logout</button>
-</nav>
+  </nav>
 <hr />
 
 <div *ngIf="!authService.getIsAuthInitialized()">Loading...</div>
