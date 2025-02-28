@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './connexion.component.html',
   styleUrl: './connexion.component.css'
 })
-export class AuthComponent {
+export class ConnexionComponent {
   email = '';
   motDePasse = '';
   messageErreur = '';
@@ -19,7 +19,7 @@ export class AuthComponent {
     if (success) {
         this.router.navigate(['/search-flight']);
     } else {
-        console.error('Failed');
+        console.error('Failed to sign in.');
     }
   }
 }

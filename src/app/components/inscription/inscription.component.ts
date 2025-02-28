@@ -26,15 +26,17 @@ export class InscriptionComponent {
       this.messageErreur = "L'email ne respecte pas les critères.";
       return;
     }
+
     if (!this.motDePasseValide(this.motDePasse)) {
       this.messageErreur = "Le mot de passe doit contenir au moins 6 caractères, une lettre majuscule, une lettre minuscule et un chiffre.";
       return;
     }
+
     const success = await this.authService.signUp(this.email, this.motDePasse);
     if (success) {
         this.router.navigate(['/sign-in']);
     } else {
-        console.error('Failed');
+      console.error('Failed to sign up.');
     }
   }
   emailValide(email: string): boolean {
