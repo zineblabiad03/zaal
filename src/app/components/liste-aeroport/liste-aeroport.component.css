@@ -1,0 +1,14 @@
+.full-width {
+    width: 100%;
+}
+
+.loading-spinner {
+    color: blue;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}

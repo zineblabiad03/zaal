@@ -1,48 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AirportService {
-  private apiUrl = 'https://test.api.amadeus.com/v1/reference-data/locations';
-  private apiKey = 'lT44pa1GsQA29UbtNYn2V1EfJRgd01wF'; 
+  private apiUrl = 'https://api.aviationstack.com/v1/airports';
+  private apiKey = '91f775c75a662d44663375a790cbb63e'; 
 
   constructor(private http: HttpClient) {}
 
-  getAllAirports(searchTerm: string) {
-    let allAirports: { code: string; name: string }[] = [];
-    let page = 1;
+  getAllAirports() : Promise<{code: string, name: string, type : string}[]> {
+    const headers = new HttpHeaders({
+      'Content-Type' : 'application/json'
+    });
+    const params = new HttpParams()
+      .set('access_key', this.apiKey)
+      .set('fields', 'iata_code,airport_name,airport_type');
 
-    const fetchPage = (): Promise<{ code: string; name: string }[]> => {
-      return this.http.get<any>(this.apiUrl, {
-        params: {
-          subType: 'AIRPORT',
-          keyword: searchTerm,
-          page: page.toString(),
-          apikey: this.apiKey,
-        },
-      }).toPromise()
-        .then(response => {
-          const airports = response.data.map((airport: any) => ({
-            code: airport.iataCode,
-            name: airport.name,
-          }));
-
-          if (airports.length > 0) {
-            allAirports = [...allAirports, ...airports];
-            page++;
-            return fetchPage(); 
-          } else {
-            return allAirports; 
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching airports:', error);
-          return allAirports;
-        });
-    };
-
-    return fetchPage();
+    return this.http.get<{code: string, name: string, type : string}[]>(this.apiUrl, {headers, params});
   }
 }

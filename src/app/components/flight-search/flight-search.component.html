@@ -2,20 +2,7 @@
   <h2>🔍 Rechercher un vol</h2>
 
   <div class="search-fields">
-    <mat-form-field appearance="outline">
-      <mat-label>Origine</mat-label>
-      <input matInput [(ngModel)]="origin">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Destination</mat-label>
-      <input matInput [(ngModel)]="destination">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Date de départ</mat-label>
-      <input matInput type="date" [(ngModel)]="departureDate">
-    </mat-form-field>
+    <app-liste-aeroport></app-liste-aeroport>
 
     <button mat-raised-button color="primary" (click)="searchFlights()">Rechercher</button>
   </div>

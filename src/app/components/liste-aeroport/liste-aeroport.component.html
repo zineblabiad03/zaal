@@ -1,0 +1,13 @@
+<mat-form-field appearance ="outline" class="full-width">
+    <mat-label>Choisissez votre destination</mat-label>
+    <mat-select [(value)] = "selectedLocation">
+        <mat-option *ngFor="let location of flightLocations" [value] ="location.code">
+            {{location.name}} ({{location.code}}) - {{location.type}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<p *ngIf = "selectedLocation"> Destination sélectionnée : {{ selectedLocation }} </p>
+<div *ngIf="isLoading" class ="loading-spinner">
+    Chargement des vols ...
+</div>
+<div *ngIf="errorMessage" class = "error"> {{ errorMessage }} </div>
