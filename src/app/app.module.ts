@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -24,6 +26,7 @@ import { InscriptionComponent } from './components/inscription/inscription.compo
 import { ConnexionComponent } from './components/connexion/connexion.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { ListeAeroportComponent } from './components/liste-aeroport/liste-aeroport.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { MatButtonModule } from '@angular/material/button';
     AuthComponent,
     VolsComponent,
     InscriptionComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    ListeAeroportComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
+    MatSelectModule,
     provideFirebaseApp(() => initializeApp({
       "projectId":"zaal-d2b99",
       "appId":"1:517938653680:web:854cd14199e6a9d814d535",
