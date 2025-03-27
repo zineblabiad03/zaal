@@ -17,8 +17,11 @@ export class ListeAeroportComponent implements OnInit {
 
   selectedDeparture: string = '';
   selectedArrival: string = '';
-  departureDate = '2025-05-05';
-
+  departureDate: string = '';
+  returnDate: string = '';
+  numberOfPassengers: number = 1 ;
+  stopover: boolean = false;
+  
   searchCompleted: boolean = false;
 
   constructor(private flightLocationService: AmadeusService) {}
