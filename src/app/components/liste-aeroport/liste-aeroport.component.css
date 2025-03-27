@@ -1,4 +1,4 @@
-
+/* 
 .full-width {
     width: 100%;
 }
@@ -57,4 +57,154 @@ mat-option:hover {
 .search-button{
     width: 100%;
     margin-top: 5px;
+} */ 
+ /* Largeur complète */
+
+/* Conteneur principal */
+.container {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+/* Boîte floutée */
+.search-container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 95%;
+    max-width: 1350px; /* Ajuster la largeur */
+    color: white;
+}
+
+/* Conteneur des champs */
+.searching-form {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap; /* Garder tous les éléments sur la même ligne */
+    width: 100%;
+}
+
+/* Champs de saisie */
+.search {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 200px; /* Ajuster la largeur */
+    background: rgba(255, 255, 255, 0.8);
+}
+.search_date{
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 200px; /* Ajuster la largeur */
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Alignement des champs */
+.search-fields {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Champs de date */
+input {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    max-width: 130px; /* Ajustement */
+    background: rgba(255, 255, 255, 0.9);
+}
+
+input[type='date'] {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    color: rgb(141, 140, 140);
+    max-width: 130px; /* Ajustement */
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.search.airport {
+    width: 100%;
+    max-width: 250px; /* Champs aéroport plus large */
+}
+
+/* Nombre de passagers */
+.passenger-count {
+    width: 80px; /* Taille réduite */
+    text-align: center;
+    color: rgb(141, 140, 140);
+}
+
+/* Case à cocher */
+.escale-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    color: white;
+}
+
+/* Bouton de recherche */
+.search-button {
+    background-color:#007bff;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    width: 50px;  /* Taille du bouton */
+    height: 50px;
+}
+.search-button i {
+    font-size: 20px;
+    color: white;
+}
+
+/* Effet au survol */
+.search-button:hover {
+    background-color: #0056b3;
+    background-color: #0056b3;
+}
+
+.search-container h2{
+    font-size: 28px; /* Augmenter la taille */
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+    justify-content: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Ajoute une ombre pour le contraste */
+    display: flex;
+    gap: 8px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .searching-form {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+

@@ -1,32 +1,49 @@
 <div class="container">
     <div class="search-container">
-        <h2>🔍 Rechercher un vol</h2>
+        <h2> Rechercher un vol</h2>
         <div class="search-fields">
-    
             <div class="searching-form">
-                <div>
-                    <input class="search" matInput style="color: black" list="airports_dep" [(ngModel)]="selectedDeparture"
-                        (ngModelChange)="onSearchChange('departure')" placeholder="Type a city or airport..." />
+                <div class="search.airport">
+                    <input class="search" list="airports_dep" [(ngModel)]="selectedDeparture"
+                        (ngModelChange)="onSearchChange('departure')" placeholder="Départ" />
                     <datalist id="airports_dep">
                         <option *ngFor="let location of flightLocationsDeparture" [value]="location.iataCode">
-                            {{location.iataCode}} - {{location.name}}
+                            {{ location.iataCode }} - {{ location.name }}
                         </option>
                     </datalist>
                 </div>
-                
-                <div>
-                    <input class="search" matInput style="color: black" list="airports_arr" [(ngModel)]="selectedArrival"
-                        (ngModelChange)="onSearchChange('arrival')" placeholder="Type a city or airport..." />
+                <div class="search.airport">
+                    <input class="search" list="airports_arr" [(ngModel)]="selectedArrival"
+                        (ngModelChange)="onSearchChange('arrival')" placeholder="Arrivée" />
                     <datalist id="airports_arr">
-                    <option *ngFor="let location of flightLocationsArrival" [value]="location.iataCode">
-                        {{location.iataCode}} - {{location.name}}
-                    </option>
-                </datalist>
+                        <option *ngFor="let location of flightLocationsArrival" [value]="location.iataCode">
+                            {{ location.iataCode }} - {{ location.name }}
+                        </option>
+                    </datalist>
                 </div>
-                
+
+                <div>
+                    <input type="date" class="search_date" [(ngModel)]="departureDate" placeholder="Date de départ" />
+                </div>
+
+                <div>
+                    <input type="date" class="search_date" [(ngModel)]="returnDate" placeholder="Date de retour" />
+                </div>
+
+                <div>
+                    <input type="number" class="search passenger-count" [(ngModel)]="numberOfPassengers" min="1" max="10" placeholder="1" />
+                </div>
+
+                <label class="escale-checkbox">
+                    <input type="checkbox" [(ngModel)]="stopover" />
+                    Escale
+                </label>
+
+                <button class="search-button" (click)="searchFlights()">
+                    <i class="fas fa-search"></i>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                </button>
             </div>
-        
-            <button class="search-button" mat-raised-button color="primary" (click)="searchFlights()">Rechercher</button>
         </div>
     </div>
 </div>
