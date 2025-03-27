@@ -18,13 +18,12 @@ export interface FlightOffer {
   export interface Segment {
     departure: AirportDetails;
     arrival: AirportDetails;
-    carrierCode: string;
     duration: string;
   }
   
   export interface AirportDetails {
     iataCode: string;
-    at: string;  // ISO 8601 timestamp
+    at: string;
   }
   
   export interface FlightSearchResponse {

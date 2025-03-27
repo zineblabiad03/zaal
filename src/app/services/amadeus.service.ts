@@ -51,18 +51,22 @@ export class AmadeusService {
 
   private fetchFlights(origin: string, destination: string, departureDate: string, returnDate: string, adults: number, nonStop: boolean): Observable<FlightSearchResponse> {
     const datePipe = new DatePipe('en-US');
+    
     departureDate = datePipe.transform(departureDate, 'yyyy-MM-dd') || departureDate;
     returnDate = datePipe.transform(returnDate, 'yyyy-MM-dd') || returnDate;
 
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${this.accessToken}` });
 
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('originLocationCode', origin)
       .set('destinationLocationCode', destination)
       .set('departureDate', departureDate)
-      .set('returnDate', returnDate)
       .set('adults', adults)
       .set('nonStop', nonStop);
+    
+    if (returnDate.length > 0) {
+      params.set('returnDate', returnDate);
+    }
 
     return this.http.get<FlightSearchResponse>(this.flightUrl, { headers, params });
   }
