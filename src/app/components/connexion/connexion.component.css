@@ -1,3 +1,42 @@
 h1, h2, h3, p, label, input, button {
     color: white;
-  }
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.auth-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+  color: black !important;
+  background: rgba(255, 255, 255, 0.5); /* 50% transparent avec le fond visible */
+}
+
+input:focus {
+  border-color: #007bff;
+}
+
+button {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observer, Observable } from 'rxjs';
+import { FlightLocation } from '../models/flight.model';
 import { FlightSearchResponse } from '../models/flight.model';
 
 
@@ -9,6 +10,7 @@ import { FlightSearchResponse } from '../models/flight.model';
 })
 export class AmadeusService {
   private authUrl = 'https://test.api.amadeus.com/v1/security/oauth2/token';
+  private airportURL = 'https://test.api.amadeus.com/v1/reference-data/locations';
   private flightUrl = 'https://test.api.amadeus.com/v2/shopping/flight-offers';
   private clientId = 'lT44pa1GsQA29UbtNYn2V1EfJRgd01wF';
   private clientSecret = 'Uhe4TA5GRT6puIJN';
@@ -57,4 +59,67 @@ export class AmadeusService {
 
     return this.http.get<FlightSearchResponse>(this.flightUrl, { headers, params });
   }
+
+  public searchAirports(keyword: string, limit: number = 100) : Observable<FlightLocation[]> {
+    return new Observable(observer => {
+      this.getAccessToken().subscribe({
+        next: tokenResponse => {
+          const token = tokenResponse.access_token;
+
+          const params = new HttpParams()
+            .set('keyword', keyword)
+            .set('subType', 'AIRPORT')
+            .set('page[limit]', limit.toString());
+          const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+          });
+
+          this.http.get<{ data: FlightLocation[] }>(this.airportURL, { headers, params }).subscribe({
+            next: response  => {
+              observer.next(response.data || []);
+              observer.complete();
+            },
+            error: err => {
+              observer.error(err);
+            }
+          });
+        },
+        error: err => {
+          observer.error(err);
+        }
+      });
+    });
+  }
+
+  public getAllAirports() : Observable<FlightLocation[]> {
+    return new Observable((observer: Observer<FlightLocation[]>) => {
+      const letters = 'A'.split('');
+      let allLocations: FlightLocation[] = [];
+      let currentIndex = 0;
+
+      const processNext = () => {
+        if (currentIndex >= letters.length) {
+          // const uniqueLocations = allLocations.filter((location, index, self) =>
+          //   index === self.findIndex(t => t.iata_code === location.iata_code)
+          // );
+          // observer.next(uniqueLocations);
+          observer.next(allLocations);
+          observer.complete();
+          return;
+        }
+
+        this.searchAirports(letters[currentIndex]).subscribe({
+          next: (locations: FlightLocation[]) => {
+            allLocations = allLocations.concat(locations);
+            currentIndex++;
+            setTimeout(processNext, 500);
+          },
+          error: err => observer.error(err)
+        });
+      };
+
+      processNext();
+    });
+  }
+
 }

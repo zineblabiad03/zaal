@@ -2,9 +2,9 @@
   <h2>🔍 Rechercher un vol</h2>
 
   <div class="search-fields">
-    <app-liste-aeroport></app-liste-aeroport>
+    <!-- <app-liste-aeroport></app-liste-aeroport> -->
 
-    <button mat-raised-button color="primary" (click)="searchFlights()">Rechercher</button>
+    <button class="search-button" mat-raised-button color="primary" (click)="searchFlights()">Rechercher</button>
   </div>
 
   <div *ngIf="flights.length" class="results">

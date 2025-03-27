@@ -4,15 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { FlightSearchComponent } from './components/flight-search/flight-search.component';
 
 import {MatIcon, MatIconModule} from '@angular/material/icon';
 
@@ -31,7 +30,6 @@ import { ListeAeroportComponent } from './components/liste-aeroport/liste-aeropo
 @NgModule({
   declarations: [
     AppComponent,
-    FlightSearchComponent,
     AuthComponent,
     VolsComponent,
     InscriptionComponent,

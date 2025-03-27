@@ -30,3 +30,8 @@ export interface FlightOffer {
   export interface FlightSearchResponse {
     data: FlightOffer[];
   }
+
+  export interface FlightLocation {
+    iataCode: string;
+    name: string;
+  }

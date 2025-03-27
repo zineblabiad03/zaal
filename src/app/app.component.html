@@ -1,13 +1,17 @@
-<nav class="navbar">
-  <a routerLink="/sign-in"><mat-icon>login</mat-icon> Connexion</a>
-  <a routerLink="/sign-up"><mat-icon>person_add</mat-icon> Inscription</a>
-  <a routerLink="/search-flight"><mat-icon>search</mat-icon> Rechercher un vol</a>
-  <button mat-icon-button color="warn" (click)="logout()">
-    <mat-icon>logout</mat-icon> Déconnexion
-  </button>
-</nav>
+<div class="global-container">
+  <nav class="navbar">
+    <a routerLink="/sign-in"><mat-icon>login</mat-icon> <span> Connexion</span> </a>
+    <a routerLink="/sign-up"><mat-icon>person_add</mat-icon> <span>Inscription</span> </a>
+    <a routerLink="/search-flight"><mat-icon>search</mat-icon> <span>Rechercher un vol</span> </a>
+    <a class="logout" color="warn" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Déconnexion</span>
+    </a>
+  </nav>
 
-<div *ngIf="!authService.getIsAuthInitialized()">Loading...</div>
-<div *ngIf="authService.getIsAuthInitialized()">
+  <div *ngIf="!authService.getIsAuthInitialized()">Loading...</div>
+  <div class="router-div" *ngIf="authService.getIsAuthInitialized()">
     <router-outlet></router-outlet>
+  </div>
+
 </div>

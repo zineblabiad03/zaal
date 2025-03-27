@@ -4,7 +4,7 @@ import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angula
 import { AppComponent } from './app.component';
 import { ConnexionComponent } from './components/connexion/connexion.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
-import { FlightSearchComponent } from './components/flight-search/flight-search.component';
+import { ListeAeroportComponent } from './components/liste-aeroport/liste-aeroport.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['sign-in']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['search-flight']);
@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   { 
     path: 'search-flight',
-    component: FlightSearchComponent,
+    component: ListeAeroportComponent,
     ...canActivate(redirectUnauthorizedToLogin)
   },
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },

@@ -2,25 +2,31 @@
     <div class="auth-card">
       <h2>Connexion</h2>
   
-      <div class="input-group">
+      <label>Email :</label>
+      <input type="email" [(ngModel)]="email" required />
+      <!-- <div class="input-group">
         <label>Email :</label>
         <mat-form-field appearance="outline">
           <mat-icon matPrefix>email</mat-icon>
           <input matInput type="email" [(ngModel)]="email" required />
         </mat-form-field>
-      </div>
+      </div> -->
   
-      <div class="input-group">
+      <label>Mot de passe :</label>
+      <input type="password" [(ngModel)]="motDePasse" required />
+      <!-- <div class="input-group">
         <label>Mot de passe :</label>
         <mat-form-field appearance="outline">
           <mat-icon matPrefix>vpn_key</mat-icon>
           <input matInput type="password" [(ngModel)]="motDePasse" required />
         </mat-form-field>
-      </div>
+      </div> -->
   
-      <button mat-raised-button color="primary" (click)="connecter()">Se connecter</button>
+      <button type="submit" (click)="connecter()">Se connecter</button>
+      <!-- <button mat-raised-button color="primary" (click)="connecter()">Se connecter</button> -->
   
       <p *ngIf="messageErreur" style="color: red;">{{ messageErreur }}</p>
     </div>
   </div>
+  
   

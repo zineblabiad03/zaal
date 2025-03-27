@@ -1,13 +1,58 @@
-<mat-form-field appearance ="outline" class="full-width">
-    <mat-label>Choisissez votre destination</mat-label>
-    <mat-select [(value)] = "selectedLocation">
-        <mat-option *ngFor="let location of flightLocations" [value] ="location.code">
-            {{location.name}} ({{location.code}}) - {{location.type}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
-<p *ngIf = "selectedLocation"> Destination sélectionnée : {{ selectedLocation }} </p>
-<div *ngIf="isLoading" class ="loading-spinner">
-    Chargement des vols ...
+<div class="container"*ngIf="!searchCompleted">
+    <div class="search-container">
+        <h2>🔍 Rechercher un vol</h2>
+        <div class="search-fields">
+    
+            <div class="searching-form">
+                <div>
+                    <input class="search" matInput style="color: black" list="airports_dep" [(ngModel)]="selectedDeparture"
+                        (ngModelChange)="onSearchChange('departure')" placeholder="Type a city or airport..." />
+                    <datalist id="airports_dep">
+                        <option *ngFor="let location of flightLocationsDeparture" [value]="location.iataCode">
+                            {{location.iataCode}} - {{location.name}}
+                        </option>
+                    </datalist>
+                </div>
+                
+                <div>
+                    <input class="search" matInput style="color: black" list="airports_arr" [(ngModel)]="selectedArrival"
+                        (ngModelChange)="onSearchChange('arrival')" placeholder="Type a city or airport..." />
+                    <datalist id="airports_arr">
+                    <option *ngFor="let location of flightLocationsArrival" [value]="location.iataCode">
+                        {{location.iataCode}} - {{location.name}}
+                    </option>
+                </datalist>
+                </div>
+                
+            </div>
+        
+            <button class="search-button" mat-raised-button color="primary" (click)="searchFlights()">Rechercher</button>
+        </div>
+    </div>
 </div>
-<div *ngIf="errorMessage" class = "error"> {{ errorMessage }} </div>
+
+<div *ngIf="searchCompleted" class="results">
+    <div>
+        <ul>
+            <li *ngFor="let flight of flights; let i = index">
+                <!-- <h3>✈️ Flight {{ i + 1 }}</h3> -->
+    
+                <ul>
+                    <li *ngFor="let itinerary of flight.itineraries; let j = index">
+                        <h4>🛤 Itinerary {{ j + 1 }}</h4>
+                        <ul>
+                            <li *ngFor="let segment of itinerary.segments">
+                                <strong>📅 Départ : {{ segment.departure.at }} de {{ segment.departure.iataCode }} → 📅 Arrivée : {{ segment.arrival.at }} à {{ segment.arrival.iataCode }}</strong>
+                            </li>
+                            <p>💰 Prix : {{ flight.price.total }} {{ flight.price.currency }}</p>
+                        </ul>
+    
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    
+        <button mat-raised-button color="warn" class="return-button" (click)="resetSearch()">🔙 Retour à la recherche</button>
+    </div>
+
+</div>
