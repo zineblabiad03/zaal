@@ -12,8 +12,8 @@ export class AmadeusService {
   private authUrl = 'https://test.api.amadeus.com/v1/security/oauth2/token';
   private airportURL = 'https://test.api.amadeus.com/v1/reference-data/locations';
   private flightUrl = 'https://test.api.amadeus.com/v2/shopping/flight-offers';
-  private clientId = 'lT44pa1GsQA29UbtNYn2V1EfJRgd01wF';
-  private clientSecret = 'Uhe4TA5GRT6puIJN';
+  private clientId = 'I8SZq9mAGhLT3YB3zqLZhyJg37JqaC8S';
+  private clientSecret = 'eyV6FoJepGh9f1fC';
   private accessToken: string | null = null;
 
   constructor(private http: HttpClient) { }
