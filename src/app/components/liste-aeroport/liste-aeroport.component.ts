@@ -21,10 +21,12 @@ export class ListeAeroportComponent implements OnInit {
   departureDate: string = '';
   returnDate: string = '';
 
-  numberOfPassengers: number = 0 ;
-  stopover: boolean = true;
+  numberOfPassengers: number = 1 ;
+  stopover: boolean = false;
   
   searchCompleted: boolean = false;
+
+  messageRecherche: string = '';
 
   constructor(private flightLocationService: AmadeusService) {}
 
@@ -91,24 +93,27 @@ export class ListeAeroportComponent implements OnInit {
     this.flights = [];
     this.searchCompleted = false;
 
-    this.flightLocationService.getFlights(this.selectedDeparture, this.selectedArrival, this.departureDate, this.returnDate, this.numberOfPassengers, this.stopover).subscribe({
+    this.flightLocationService.getFlights(this.selectedDeparture, this.selectedArrival, this.departureDate, this.returnDate, this.numberOfPassengers, !this.stopover).subscribe({
       next: (response) => {
           this.flights = (response.data)
-            .filter(flight => 
-              flight.itineraries.every(itinerary => itinerary.segments.length > 0)
+            .filter(flight =>
+              flight.itineraries.every(itinerary => itinerary.segments.length <= 2)
             );
           
           this.searchCompleted = this.flights.length > 0;
 
           if (this.flights.length === 0) {
-              console.warn('No flights found.');
+            this.messageRecherche = 'Aucun vol trouvé !';
+            console.log('No flights found.');
           } else {
+            this.messageRecherche = '';
             console.log('All flights: ', this.flights);
           }
           
       },
       error: (error) => {
-          console.error('Error fetching flights:', error);
+        this.messageRecherche = 'Aucun vol trouvé !';
+        console.error('Error fetching flights:', error);
       }
     });
   }
