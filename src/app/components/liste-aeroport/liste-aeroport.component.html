@@ -53,8 +53,6 @@
     <h2 class="results-title">Résultats des vols disponibles</h2>
   
     <div *ngFor="let flight of flights; let i = index" class="flight-card">
-        <!-- Prix du vol -->
-        <div class="flight-price">💰 {{ flight.price.total }} {{ flight.price.currency }}</div>
         
         <!-- Boucle sur les itinéraires -->
         <div class="itinerary-container">
@@ -73,9 +71,7 @@
                 </div>
             </div>
         </div>
-  
-        <!-- Bouton Voir -->
-        <button class="view-button">Voir →</button>
+        <div class="flight-price-bottom">💰 Prix : {{ flight.price.total }} {{ flight.price.currency }}</div>
     </div>
   </div>
   
