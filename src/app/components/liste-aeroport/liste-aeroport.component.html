@@ -48,28 +48,33 @@
     </div>
 </div>
 
-<div *ngIf="searchCompleted" class="results">
-    <div>
-        <ul>
-            <li *ngFor="let flight of flights; let i = index">
-                <!-- <h3>✈️ Flight {{ i + 1 }}</h3> -->
-    
-                <ul>
-                    <li *ngFor="let itinerary of flight.itineraries; let j = index">
-                        <h4>🛤 Itinerary {{ j + 1 }}</h4>
-                        <ul>
-                            <li *ngFor="let segment of itinerary.segments">
-                                <strong>📅 Départ : {{ segment.departure.at }} de {{ segment.departure.iataCode }} → 📅 Arrivée : {{ segment.arrival.at }} à {{ segment.arrival.iataCode }}</strong>
-                            </li>
-                            <p>💰 Prix : {{ flight.price.total }} {{ flight.price.currency }}</p>
-                        </ul>
-    
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    
-        <!-- <button mat-raised-button color="warn" class="return-button" (click)="resetSearch()">🔙 Retour à la recherche</button> -->
+<div *ngIf="searchCompleted" class="results-container">
+    <h2 class="results-title">Résultats des vols disponibles</h2>
+  
+    <div *ngFor="let flight of flights; let i = index" class="flight-card">
+        <!-- Prix du vol -->
+        <div class="flight-price">💰 {{ flight.price.total }} {{ flight.price.currency }}</div>
+        
+        <!-- Boucle sur les itinéraires -->
+        <div class="itinerary-container">
+            <div *ngFor="let itinerary of flight.itineraries; let j = index" class="itinerary">
+                <h3>Itinéraire {{ j + 1 }}</h3>
+                <div *ngFor="let segment of itinerary.segments" class="segment-box">
+                    <div class="segment">
+                        <p class="aeroport"> <strong>Départ :</strong> {{ segment.departure.at | date:'yyyy-MM-dd HH:mm' }}</p>
+                        <p class="aeroport"> <strong>Aéroport :</strong> {{ segment.departure.iataCode }} </p>
+                    </div>
+                    <p class="duration"> <strong>Durée :</strong> {{ segment.duration }}</p>
+                    <div class="segment">
+                        <p class="aeroport"> <strong>Arrivée :</strong> {{ segment.arrival.at | date:'yyyy-MM-dd HH:mm' }}</p>
+                        <p class="aeroport"> <strong>Aéroport :</strong> {{ segment.arrival.iataCode }} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <!-- Bouton Voir -->
+        <button class="view-button">Voir →</button>
     </div>
-
-</div>
+  </div>
+  
