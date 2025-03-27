@@ -41,7 +41,7 @@ export class AmadeusService {
           });
         });
       } else {
-        this.fetchFlights(origin, destination, departureDate, returnDate, adults, nonStop).subscribe(data => {
+          this.fetchFlights(origin, destination, departureDate, returnDate, adults, nonStop).subscribe(data => {
           observer.next(data);
           observer.complete();
         });
@@ -81,6 +81,7 @@ export class AmadeusService {
             .set('keyword', keyword)
             .set('subType', 'AIRPORT')
             .set('page[limit]', limit.toString());
+
           const headers = new HttpHeaders({
             'Authorization': `Bearer ${token}`
           });
@@ -99,37 +100,6 @@ export class AmadeusService {
           observer.error(err);
         }
       });
-    });
-  }
-
-  public getAllAirports() : Observable<FlightLocation[]> {
-    return new Observable((observer: Observer<FlightLocation[]>) => {
-      const letters = 'A'.split('');
-      let allLocations: FlightLocation[] = [];
-      let currentIndex = 0;
-
-      const processNext = () => {
-        if (currentIndex >= letters.length) {
-          // const uniqueLocations = allLocations.filter((location, index, self) =>
-          //   index === self.findIndex(t => t.iata_code === location.iata_code)
-          // );
-          // observer.next(uniqueLocations);
-          observer.next(allLocations);
-          observer.complete();
-          return;
-        }
-
-        this.searchAirports(letters[currentIndex]).subscribe({
-          next: (locations: FlightLocation[]) => {
-            allLocations = allLocations.concat(locations);
-            currentIndex++;
-            setTimeout(processNext, 500);
-          },
-          error: err => observer.error(err)
-        });
-      };
-
-      processNext();
     });
   }
 

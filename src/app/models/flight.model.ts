@@ -1,12 +1,12 @@
 export interface FlightOffer {
     type: string;
     id: string;
-    source: string;
-    price: Price;
     itineraries: Itinerary[];
+    price: Price;
   }
   
   export interface Price {
+    grandTotal: string;
     currency: string;
     total: string;
   }
@@ -16,14 +16,14 @@ export interface FlightOffer {
   }
   
   export interface Segment {
-    departure: AirportDetails;
-    arrival: AirportDetails;
+    departure: FlightEndPoint;
+    arrival: FlightEndPoint;
     duration: string;
   }
   
-  export interface AirportDetails {
+  export interface FlightEndPoint {
     iataCode: string;
-    at: string;
+    at: any;
   }
   
   export interface FlightSearchResponse {

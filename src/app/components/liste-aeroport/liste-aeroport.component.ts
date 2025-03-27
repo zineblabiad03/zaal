@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AmadeusService } from '../../services/amadeus.service';
-import { FlightLocation, FlightOffer } from '../../models/flight.model';
+import { FlightLocation, FlightOffer, FlightSearchResponse } from '../../models/flight.model';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-liste-aeroport',
@@ -36,35 +37,19 @@ export class ListeAeroportComponent implements OnInit {
 
   async onSearchChange(type: 'departure' | 'arrival') {
     if (type === 'departure' && this.selectedDeparture.length > 0) {
-      if (this.locations.some(location => location.iataCode.toLowerCase() === this.selectedDeparture.toLowerCase())) {
-        this.flightLocationsDeparture = [];
-      } else {
-        const lowerCasePattern = this.selectedDeparture.toLowerCase();
-        this.flightLocationsDeparture = this.locations.filter(location =>
-          location.iataCode.toLowerCase().startsWith(lowerCasePattern)
-        );
+      const lowerCasePattern = this.selectedDeparture.toLowerCase();
+      this.flightLocationsDeparture = this.locations.filter(location =>
+        location.iataCode.toLowerCase().startsWith(lowerCasePattern)
+      );
 
-        this.flightLocationsDeparture.sort((a, b) => a.iataCode.localeCompare(b.iataCode));
-
-        this.flightLocationsDeparture = this.flightLocationsDeparture.filter((location, index, self) =>
-          index === self.findIndex(t => t.name === location.name)
-        );
-      }
+      this.flightLocationsDeparture.sort((a, b) => a.iataCode.localeCompare(b.iataCode));
     } else if (type === 'arrival' && this.selectedArrival.length > 0) {
-      if (this.locations.some(location => location.iataCode.toLowerCase() === this.selectedArrival.toLowerCase())) {
-        this.flightLocationsArrival = [];
-      } else {
-        const lowerCasePattern = this.selectedArrival.toLowerCase();
-        this.flightLocationsArrival = this.locations.filter(location =>
-          location.iataCode.toLowerCase().startsWith(lowerCasePattern)
-        );
+      const lowerCasePattern = this.selectedArrival.toLowerCase();
+      this.flightLocationsArrival = this.locations.filter(location =>
+        location.iataCode.toLowerCase().startsWith(lowerCasePattern)
+      );
 
-        this.flightLocationsArrival.sort((a, b) => a.iataCode.localeCompare(b.iataCode));
-
-        this.flightLocationsArrival = this.flightLocationsArrival.filter((location, index, self) =>
-          index === self.findIndex(t => t.name === location.name)
-        );
-      }
+      this.flightLocationsArrival.sort((a, b) => a.iataCode.localeCompare(b.iataCode));
     } else {
       this.flightLocationsDeparture = [];
       this.flightLocationsArrival = [];
@@ -75,47 +60,72 @@ export class ListeAeroportComponent implements OnInit {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
     for(const letter of letters) {
-      await new Promise(resolve => setTimeout(resolve, 100));
+      try {
+        const intermediate_locations = await lastValueFrom(this.flightLocationService.searchAirports(letter, 1000));
+        this.locations = [...this.locations, ...intermediate_locations];
 
-      this.flightLocationService.searchAirports(letter, 1000).subscribe({
-        next: (data: FlightLocation[]) => {
-          console.log(`Results for '${letter}':`, data);
-          this.locations = [...this.locations, ...data];
-        },
-        error: (error: any) => {
-          console.error('Erreur de chargement des aéroports:', error);
-        }
-      });
+        console.log('Locations for ', letter, ': ', intermediate_locations.length);
+        console.log('Total locations : ', this.locations.length);
+      } catch (error) {
+        console.log('Erreur de chargement des aéroports:', error);
+      }
     }
+
+    this.locations = this.locations.filter((location, index, self) =>
+      index === self.findIndex(t => t.iataCode === location.iataCode)
+    );
+    console.log('Total locations bis : ', this.locations.length);
   }
 
-  searchFlights(): void {
+  async searchFlights() {
     this.flights = [];
     this.searchCompleted = false;
+    
+    try {
+      const response = await lastValueFrom(this.flightLocationService.getFlights(this.selectedDeparture, this.selectedArrival, this.departureDate, this.returnDate, this.numberOfPassengers, !this.stopover));
+      this.flights = response.data;
 
-    this.flightLocationService.getFlights(this.selectedDeparture, this.selectedArrival, this.departureDate, this.returnDate, this.numberOfPassengers, !this.stopover).subscribe({
-      next: (response) => {
-          this.flights = (response.data)
-            .filter(flight =>
-              flight.itineraries.every(itinerary => itinerary.segments.length <= 2)
-            );
+      console.log('Flights :');
+      console.log(this.flights);
           
-          this.searchCompleted = this.flights.length > 0;
+      this.searchCompleted = this.flights.length > 0;
 
-          if (this.flights.length === 0) {
-            this.messageRecherche = 'Aucun vol trouvé !';
-            console.log('No flights found.');
-          } else {
-            this.messageRecherche = '';
-            console.log('All flights: ', this.flights);
-          }
-          
-      },
-      error: (error) => {
+      if (this.flights.length === 0) {
         this.messageRecherche = 'Aucun vol trouvé !';
-        console.error('Error fetching flights:', error);
+        console.log('No flights found.');
+      } else {
+        this.messageRecherche = '';
+        console.log('All flights: ', this.flights);
       }
-    });
+    } catch (error) {
+      this.messageRecherche = 'Aucun vol trouvé !';
+      console.error('Error fetching flights:', error);
+    }
+
+      // this.flightLocationService.getFlights(this.selectedDeparture, this.selectedArrival, this.departureDate, this.returnDate, this.numberOfPassengers, !this.stopover).subscribe({
+      // next: (response: FlightSearchResponse) => {
+      //     this.flights = [...this.flights, ...response.data];
+      //       // .filter(flight =>
+      //       //   flight.itineraries.every(itinerary => itinerary.segments.length <= 2)
+      //       // );
+      //     console.log(response.data);
+          
+      //     this.searchCompleted = this.flights.length > 0;
+
+      //     if (this.flights.length === 0) {
+      //       this.messageRecherche = 'Aucun vol trouvé !';
+      //       console.log('No flights found.');
+      //     } else {
+      //       this.messageRecherche = '';
+      //       console.log('All flights: ', this.flights);
+      //     }
+          
+      // },
+      // error: (error) => {
+      //   this.messageRecherche = 'Aucun vol trouvé !';
+      //   console.error('Error fetching flights:', error);
+      // }
+    // });
   }
 
   resetSearch(): void {

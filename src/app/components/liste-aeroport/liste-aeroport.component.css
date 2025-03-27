@@ -214,6 +214,16 @@ input[type='date'] {
     text-transform: uppercase;
 }
 
+.flight-card h3 {
+    font-size: 22px; /* Augmenter un peu la taille du titre de l'itinéraire */
+    font-weight: bold;
+    color: #007bff; /* Bleu pour meilleure visibilité */
+    background: #e6f0ff; /* Fond bleu clair pour contraste */
+    padding: 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
 /* Boîte pour chaque segment (trajet) */
 .segment-box {
     background: white;
