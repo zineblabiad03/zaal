@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 import { Observer, Observable } from 'rxjs';
 import { FlightLocation } from '../models/flight.model';
 import { FlightSearchResponse } from '../models/flight.model';
@@ -29,18 +30,18 @@ export class AmadeusService {
     return this.http.post<{ access_token: string }>(this.authUrl, body.toString(), { headers });
   }
 
-  public getFlights(origin: string, destination: string, departureDate: string): Observable<FlightSearchResponse> {
+  public getFlights(origin: string, destination: string, departureDate: string, returnDate: string, adults: number, nonStop: boolean): Observable<FlightSearchResponse> {
     return new Observable(observer => {
       if (!this.accessToken) {
         this.getAccessToken().subscribe(authData => {
           this.accessToken = authData.access_token;
-          this.fetchFlights(origin, destination, departureDate).subscribe(data => {
+          this.fetchFlights(origin, destination, departureDate, returnDate, adults, nonStop).subscribe(data => {
             observer.next(data);
             observer.complete();
           });
         });
       } else {
-        this.fetchFlights(origin, destination, departureDate).subscribe(data => {
+        this.fetchFlights(origin, destination, departureDate, returnDate, adults, nonStop).subscribe(data => {
           observer.next(data);
           observer.complete();
         });
@@ -48,14 +49,20 @@ export class AmadeusService {
     });
   }
 
-  private fetchFlights(origin: string, destination: string, departureDate: string): Observable<FlightSearchResponse> {
+  private fetchFlights(origin: string, destination: string, departureDate: string, returnDate: string, adults: number, nonStop: boolean): Observable<FlightSearchResponse> {
+    const datePipe = new DatePipe('en-US');
+    departureDate = datePipe.transform(departureDate, 'yyyy-MM-dd') || departureDate;
+    returnDate = datePipe.transform(returnDate, 'yyyy-MM-dd') || returnDate;
+
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${this.accessToken}` });
 
     const params = new HttpParams()
       .set('originLocationCode', origin)
       .set('destinationLocationCode', destination)
       .set('departureDate', departureDate)
-      .set('adults', '1');
+      .set('returnDate', returnDate)
+      .set('adults', adults)
+      .set('nonStop', nonStop);
 
     return this.http.get<FlightSearchResponse>(this.flightUrl, { headers, params });
   }

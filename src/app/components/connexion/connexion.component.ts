@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ConnexionComponent implements OnInit {
   email = '';
   motDePasse = '';
+  
   messageErreur = '';
   messageSucces = '';
 
@@ -18,7 +19,7 @@ export class ConnexionComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       if(params['compteCree'] == 'true'){
-        this.messageSucces = "Compte crée avec succès. Vérifier votre boîte mail !";
+        this.messageSucces = "Compte créé avec succès. Vérifiez votre boîte mail !";
       }
     })
   }

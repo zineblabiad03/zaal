@@ -16,11 +16,11 @@ export class FlightSearchComponent {
   constructor(private amadeusService: AmadeusService) {}
 
   searchFlights() {
-    this.amadeusService.getFlights(this.origin, this.destination, this.departureDate)
-      .subscribe(response => {
-        this.flights = response.data;
-      }, error => {
-        console.error('Error fetching flights:', error);
-      });
+  //   this.amadeusService.getFlights(this.origin, this.destination, this.departureDate)
+  //     .subscribe(response => {
+  //       this.flights = response.data;
+  //     }, error => {
+  //       console.error('Error fetching flights:', error);
+  //     });
   }
 }

@@ -17,10 +17,12 @@ export class ListeAeroportComponent implements OnInit {
 
   selectedDeparture: string = '';
   selectedArrival: string = '';
+  
   departureDate: string = '';
   returnDate: string = '';
-  numberOfPassengers: number = 1 ;
-  stopover: boolean = false;
+
+  numberOfPassengers: number = 0 ;
+  stopover: boolean = true;
   
   searchCompleted: boolean = false;
 
@@ -89,20 +91,20 @@ export class ListeAeroportComponent implements OnInit {
     this.flights = [];
     this.searchCompleted = false;
 
-    this.flightLocationService.getFlights(this.selectedDeparture, this.selectedArrival, this.departureDate).subscribe({
+    this.flightLocationService.getFlights(this.selectedDeparture, this.selectedArrival, this.departureDate, this.returnDate, this.numberOfPassengers, this.stopover).subscribe({
       next: (response) => {
           this.flights = (response.data)
             .filter(flight => 
-              flight.itineraries.every(itinerary => itinerary.segments.length <= 2)
+              flight.itineraries.every(itinerary => itinerary.segments.length > 0)
             );
           
           this.searchCompleted = this.flights.length > 0;
 
           if (this.flights.length === 0) {
               console.warn('No flights found.');
+          } else {
+            console.log('All flights: ', this.flights);
           }
-          else
-          console.log('All flights: ', this.flights);
           
       },
       error: (error) => {
