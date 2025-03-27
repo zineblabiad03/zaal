@@ -12,14 +12,13 @@ export class ConnexionComponent implements OnInit {
   motDePasse = '';
   
   messageErreur = '';
-  messageSucces = '';
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       if(params['compteCree'] == 'true'){
-        this.messageSucces = "Compte créé avec succès. Vérifiez votre boîte mail !";
+        //this.messageSucces = "Compte créé avec succès. Vérifiez votre boîte mail !";
       }
     })
   }
@@ -27,9 +26,11 @@ export class ConnexionComponent implements OnInit {
   async connecter() {
     const success = await this.authService.signIn(this.email, this.motDePasse);
     if (success) {
+      this.messageErreur = '';
       this.router.navigate(['/search-flight']);
     } else {
-        console.error('Failed to sign in.');
+      this.messageErreur = 'Email ou Mot de passe invalide.';
+      console.error('Failed to sign in.');
     }
   }
 }

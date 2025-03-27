@@ -58,8 +58,8 @@ export class AmadeusService {
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${this.accessToken}` });
 
     let params = new HttpParams()
-      .set('originLocationCode', origin)
-      .set('destinationLocationCode', destination)
+      .set('originLocationCode', origin.toUpperCase())
+      .set('destinationLocationCode', destination.toUpperCase())
       .set('departureDate', departureDate)
       .set('adults', adults)
       .set('nonStop', nonStop);

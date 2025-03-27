@@ -19,14 +19,14 @@ export class InscriptionComponent {
   
   async inscrire() {
 
-    if (this.motDePasse !== this.confirmerMotDePasse) {
-      this.messageErreur = 'Les mots de passe ne correspondent pas.';
+    if (!this.emailValide(this.email)) {
+      this.messageErreur = 'Entrez un email valide.';
       this.messageSucces = '';
       return;
     }
 
-    if (!this.emailValide(this.email)) {
-      this.messageErreur = 'Entrez un email valide.';
+    if (this.motDePasse !== this.confirmerMotDePasse) {
+      this.messageErreur = 'Les mots de passe ne correspondent pas.';
       this.messageSucces = '';
       return;
     }
@@ -42,6 +42,9 @@ export class InscriptionComponent {
       await this.authService.signOut();
       this.messageErreur = '';
       this.messageSucces = 'Compte créé avec succès. Vérifiez votre boîte mail !';
+      this.email = '';
+      this.motDePasse = '';
+      this.confirmerMotDePasse = '';
       //this.router.navigate(['/sign-in'], {queryParams: { compteCree: 'true'}});
     } else {
       this.messageErreur = "Oups ... Une erreur technique s'est produite.";
@@ -49,7 +52,7 @@ export class InscriptionComponent {
       console.error('Failed to sign up.');
     }
   }
-  
+
   emailValide(email: string): boolean {
     return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
   }
