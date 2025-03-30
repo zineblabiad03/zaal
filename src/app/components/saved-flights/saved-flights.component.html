@@ -1,0 +1,26 @@
+<div *ngIf="!noSavedFlight" class="results-container">
+    <h2 class="results-title">Liste des vols sauvegardés</h2>
+  
+    <div *ngFor="let flight of savedFlights; let i = index" class="flight-card">
+        
+        <h3>Vol {{ i + 1 }}</h3>
+        <div class="itinerary-container">
+            <div *ngFor="let itinerary of flight.itineraries; let j = index" class="itinerary">
+                <h3>Itinéraire {{ j + 1 }}</h3>
+                <div *ngFor="let segment of itinerary.segments" class="segment-box">
+                    <div class="segment">
+                        <p class="aeroport"> <strong>Départ :</strong> {{ segment.departure.at | date:'yyyy-MM-dd HH:mm' }}</p>
+                        <p class="aeroport"> <strong>Aéroport :</strong> {{ segment.departure.iataCode }} </p>
+                    </div>
+                    <p class="duration"> <strong>Durée :</strong> {{ segment.duration }}</p>
+                    <div class="segment">
+                        <p class="aeroport"> <strong>Arrivée :</strong> {{ segment.arrival.at | date:'yyyy-MM-dd HH:mm' }}</p>
+                        <p class="aeroport"> <strong>Aéroport :</strong> {{ segment.arrival.iataCode }} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flight-price-bottom">💰 Prix : {{ flight.price.grandTotal }} {{ flight.price.currency }}</div>
+        <button (click)="removeFlight(flight)">Supprimer</button>
+    </div>
+  </div>

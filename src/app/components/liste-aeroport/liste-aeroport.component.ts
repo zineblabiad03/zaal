@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AmadeusService } from '../../services/amadeus.service';
+import { FavoriteFlightsService } from '../../services/favorite-flights.service';
+import { AuthService } from '../../services/auth.service';
 import { FlightLocation, FlightOffer, FlightSearchResponse } from '../../models/flight.model';
 import { lastValueFrom } from 'rxjs';
 
@@ -9,6 +11,8 @@ import { lastValueFrom } from 'rxjs';
   styleUrl: './liste-aeroport.component.css'
 })
 export class ListeAeroportComponent implements OnInit {
+  userId: string = '';
+
   locations: FlightLocation[] = [];
 
   flightLocationsDeparture: FlightLocation[] = [];
@@ -29,9 +33,17 @@ export class ListeAeroportComponent implements OnInit {
 
   messageRecherche: string = '';
 
-  constructor(private flightLocationService: AmadeusService) {}
+  constructor(
+    private flightLocationService: AmadeusService,
+    private favoriteFlightsService: FavoriteFlightsService,
+    private authService: AuthService
+  ) {}
 
   async ngOnInit(): Promise<void> {
+    this.authService.getUser().subscribe((user) => {
+      this.userId = user ? user.uid : '';
+    });
+
     await this.loadFlightLocations();
   }
 
@@ -133,5 +145,18 @@ export class ListeAeroportComponent implements OnInit {
     this.searchCompleted = false;
   }
 
+  async saveToFavorites(flight: any) {
+    if (this.userId.length == 0) {
+      alert('You need to log in to save flights.');
+      return;
+    }
+
+    try {
+      await this.favoriteFlightsService.saveFlight(flight, this.userId);
+      alert('Flight saved to favorites!');
+    } catch (error) {
+      console.error('Error saving flight:', error);
+    }
+  }
 
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut, onAuthStateChanged } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut, onAuthStateChanged, User } from '@angular/fire/auth';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,22 +8,17 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendE
 export class AuthService {
   private isAuthenticated: boolean = false;
   private authInitialized: boolean = false;
+  private user = new BehaviorSubject<User | null>(null);
 
   constructor(private auth: Auth) {
     onAuthStateChanged(this.auth, (user) => {
       this.isAuthenticated = !!user;
       this.authInitialized = true;
+      this.user.next(user);
     });
   }
 
-  async signUp(email: string, password: string): Promise<boolean> { 
-    // return createUserWithEmailAndPassword(this.auth, email, password).then(utilisateur => {
-    //   console.log(utilisateur);
-    //   sendEmailVerification(utilisateur.user).then(emailverif => {
-    //     console.log(emailverif);
-    //   });
-    //   console.log('Success');
-    // });
+  async signUp(email: string, password: string): Promise<boolean> {
     try {
       const utilisateur = await createUserWithEmailAndPassword(this.auth, email, password);
       await sendEmailVerification(utilisateur.user);
@@ -64,6 +60,13 @@ export class AuthService {
     }
   }
 
+  getUser(): Observable<User | null> {
+    return this.user.asObservable();
+  }
+
+  getUserId(): string {
+    return this.user.value ? this.user.value.uid : '';
+  }
 
   getIsAuthenticated(): boolean {
     return this.isAuthenticated;

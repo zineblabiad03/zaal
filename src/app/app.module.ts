@@ -26,6 +26,7 @@ import { ConnexionComponent } from './components/connexion/connexion.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ListeAeroportComponent } from './components/liste-aeroport/liste-aeroport.component';
+import { SavedFlightsComponent } from './components/saved-flights/saved-flights.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ListeAeroportComponent } from './components/liste-aeroport/liste-aeropo
     VolsComponent,
     InscriptionComponent,
     ConnexionComponent,
-    ListeAeroportComponent
+    ListeAeroportComponent,
+    SavedFlightsComponent
   ],
   imports: [
     BrowserModule,

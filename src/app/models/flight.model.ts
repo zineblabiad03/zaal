@@ -1,5 +1,4 @@
 export interface FlightOffer {
-    type: string;
     id: string;
     itineraries: Itinerary[];
     price: Price;

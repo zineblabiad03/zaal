@@ -1,0 +1,115 @@
+/* Conteneur principal */
+.results-container {
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+/* Titre des résultats */
+.results-title {
+    text-align: center;
+    font-size: 24px; /* Augmenter légèrement la taille du titre */
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Carte de chaque vol */
+.flight-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Prix du vol affiché en haut */
+.flight-price {
+    font-size: 20px; /* Augmenter légèrement la taille du prix en haut */
+    font-weight: bold;
+    color: #0d1691;
+    text-align: right;
+}
+
+/* Prix du vol affiché en bas */
+.flight-price-bottom {
+    font-size: 20px; /* Augmenter légèrement la taille du prix en bas */
+    font-weight: bold;
+    color: #0d1691;
+    text-align: center; /* Centré en bas de chaque carte */
+    margin-top: 15px;
+}
+
+/* Conteneur des itinéraires */
+.itinerary-container {
+    margin-top: 15px;
+}
+
+/* Chaque itinéraire */
+.itinerary {
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.itinerary h3 {
+    font-size: 22px; /* Augmenter un peu la taille du titre de l'itinéraire */
+    font-weight: bold;
+    color: #007bff; /* Bleu pour meilleure visibilité */
+    background: #e6f0ff; /* Fond bleu clair pour contraste */
+    padding: 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+.flight-card h3 {
+    font-size: 22px; /* Augmenter un peu la taille du titre de l'itinéraire */
+    font-weight: bold;
+    color: #007bff; /* Bleu pour meilleure visibilité */
+    background: #e6f0ff; /* Fond bleu clair pour contraste */
+    padding: 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+/* Boîte pour chaque segment (trajet) */
+.segment-box {
+    background: white;
+    padding: 12px; /* Réduire un peu la taille du padding */
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 8px;
+    display: flex; /* Utilisation de Flexbox */
+    justify-content: space-between; /* Aligner les éléments */
+    align-items: center; /* Centrer verticalement */
+}
+
+/* Segments (départ et arrivée) */
+.segment {
+    padding: 5px;
+    display: flex; /* Utilisation de Flexbox pour aligner les éléments */
+    justify-content: space-between; /* Met les informations sur la même ligne */
+    align-items: center;
+}
+
+/* Détails du segment */
+.segment p {
+    font-size: 18px; /* Augmenter un peu la taille du texte pour les détails */
+    font-weight: bold;
+    color: #333; /* Texte foncé pour lisibilité */
+    margin: 0 10px; /* Espacement entre les éléments */
+    display: inline-block; /* Garder les informations sur une ligne */
+}
+
+/* Code IATA plus distinct */
+.segment p strong {
+    font-size: 20px; /* Augmenter un peu la taille du code IATA */
+    color: #d9534f; /* Rouge pour attirer l'œil */
+}
+
+/* Durée du vol */
+.duration {
+    font-size: 16px; /* Augmenter un peu la taille de la durée */
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+}
