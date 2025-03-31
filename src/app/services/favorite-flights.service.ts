@@ -29,7 +29,15 @@ export class FavoriteFlightsService {
   }
 
   async removeFlight(docId: string) {
-    const flightDocRef = doc(this.firestore, `${this.collectionName}/${docId}`);
-    return await deleteDoc(flightDocRef);
+    try {
+      console.log(docId);
+      const flightDocRef = doc(this.firestore, `${this.collectionName}/${docId}`);
+      await deleteDoc(flightDocRef);
+
+      console.log('Successful deletion.');
+      //console.log(`Deleted ${querySnapshot.size} flights where ${fieldName} = ${value}`);
+    } catch (error) {
+      console.error('Error deleting flights:', error);
+    }
   }
 }

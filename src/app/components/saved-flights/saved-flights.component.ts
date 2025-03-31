@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoriteFlightsService } from '../../services/favorite-flights.service';
 import { AuthService } from '../../services/auth.service';
-import { lastValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
+import { FlightOffer } from '../../models/flight.model';
 
 @Component({
   selector: 'app-saved-flights',
   templateUrl: './saved-flights.component.html',
+  styleUrl: './saved-flights.component.css'
 })
 export class SavedFlightsComponent implements OnInit {
   savedFlights: any[] = [];
-  noSavedFlight: boolean = false;
-  userId: string = '';
+  noSavedFlight: boolean = true;
 
   constructor(
     private favoriteFlightsService: FavoriteFlightsService,
@@ -18,30 +19,27 @@ export class SavedFlightsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.getUser().subscribe((user) => {
-      if (user) {
-        this.userId = user.uid;
-        this.loadSavedFlights();
-        // if (this.savedFlights.length > 0) {
-        //   this.noSavedFlight = false;
-        // }
-      }
-    });
-    console.log('Length: ', this.savedFlights.length);
+    this.loadSavedFlights();
   }
 
-  loadSavedFlights() {
-    if (!this.userId) return;
-
-    this.favoriteFlightsService.getUserFavorites(this.userId).subscribe((flights) => {
+  async loadSavedFlights() {
+    const user = await firstValueFrom(this.authService.getUser());
+    
+    if (user) {
+      const flights = await firstValueFrom(this.favoriteFlightsService.getUserFavorites(user.uid));
       this.savedFlights = flights;
-    });
+      this.noSavedFlight = this.savedFlights.length === 0;
+    }
+    console.log('Length: ', this.savedFlights.length);
   }
 
   async removeFlight(docId: string) {
     try {
-      await this.favoriteFlightsService.removeFlight(docId);
-      alert('Flight removed from favorites!');
+      const user = await firstValueFrom(this.authService.getUser());
+      if (user) {
+        await this.favoriteFlightsService.removeFlight(docId);
+        this.loadSavedFlights();
+      }
     } catch (error) {
       console.error('Error removing flight:', error);
     }

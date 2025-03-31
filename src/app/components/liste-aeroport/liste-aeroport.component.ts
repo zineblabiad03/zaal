@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AmadeusService } from '../../services/amadeus.service';
 import { FavoriteFlightsService } from '../../services/favorite-flights.service';
 import { AuthService } from '../../services/auth.service';
-import { FlightLocation, FlightOffer, FlightSearchResponse } from '../../models/flight.model';
+import { FlightLocation, FlightOffer } from '../../models/flight.model';
 import { lastValueFrom } from 'rxjs';
 
 @Component({
@@ -113,31 +113,6 @@ export class ListeAeroportComponent implements OnInit {
       this.messageRecherche = 'Aucun vol trouvé !';
       console.error('Error fetching flights:', error);
     }
-
-      // this.flightLocationService.getFlights(this.selectedDeparture, this.selectedArrival, this.departureDate, this.returnDate, this.numberOfPassengers, !this.stopover).subscribe({
-      // next: (response: FlightSearchResponse) => {
-      //     this.flights = [...this.flights, ...response.data];
-      //       // .filter(flight =>
-      //       //   flight.itineraries.every(itinerary => itinerary.segments.length <= 2)
-      //       // );
-      //     console.log(response.data);
-          
-      //     this.searchCompleted = this.flights.length > 0;
-
-      //     if (this.flights.length === 0) {
-      //       this.messageRecherche = 'Aucun vol trouvé !';
-      //       console.log('No flights found.');
-      //     } else {
-      //       this.messageRecherche = '';
-      //       console.log('All flights: ', this.flights);
-      //     }
-          
-      // },
-      // error: (error) => {
-      //   this.messageRecherche = 'Aucun vol trouvé !';
-      //   console.error('Error fetching flights:', error);
-      // }
-    // });
   }
 
   resetSearch(): void {
@@ -145,7 +120,7 @@ export class ListeAeroportComponent implements OnInit {
     this.searchCompleted = false;
   }
 
-  async saveToFavorites(flight: any) {
+  async saveToFavorites(flight: FlightOffer) {
     if (this.userId.length == 0) {
       alert('You need to log in to save flights.');
       return;

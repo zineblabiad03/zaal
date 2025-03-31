@@ -21,6 +21,6 @@
             </div>
         </div>
         <div class="flight-price-bottom">💰 Prix : {{ flight.price.grandTotal }} {{ flight.price.currency }}</div>
-        <button (click)="removeFlight(flight)">Supprimer</button>
+        <button (click)="removeFlight(flight.id)">Supprimer</button>
     </div>
   </div>
