@@ -1,4 +1,4 @@
-<div *ngIf="!noSavedFlight" class="results-container">
+<!-- <div *ngIf="!noSavedFlight" class="results-container">
     <h2 class="results-title">Liste des vols sauvegardés</h2>
   
     <div *ngFor="let flight of savedFlights; let i = index" class="flight-card">
@@ -23,4 +23,39 @@
         <div class="flight-price-bottom">💰 Prix : {{ flight.price.grandTotal }} {{ flight.price.currency }}</div>
         <button (click)="removeFlight(flight.id)">Supprimer</button>
     </div>
-  </div>
+  </div> -->
+  <div class="favorites-container">
+    <h2 class="favorites-title">❤️ Mes Vols Sauvegardés</h2>
+
+    <div *ngFor="let flight of savedFlights; let i = index" class="flight-card">
+        <div class="flight-header">
+            <h3>✈️ Vol {{ i + 1 }}</h3>
+            <span class="flight-price">💰 Prix : {{ flight.price.total }} {{ flight.price.currency }}</span>
+        </div>
+
+        <div *ngFor="let itinerary of flight.itineraries; let j = index" class="itinerary">
+            <h4>🛤 Itinéraire {{ j + 1 }}</h4>
+
+            <div class="itinerary-details">
+                <div class="departure">
+                    <p><strong>📅 Départ :</strong> {{ itinerary.segments[0].departure.at }}</p>
+                    <p><strong>🛫 Aéroport :</strong> {{ itinerary.segments[0].departure.iataCode }}</p>
+                </div>
+
+                <div class="duration">
+                    <p>⏳ {{ itinerary.duration }}</p>
+                </div>
+
+                <div class="arrival">
+                    <p><strong>📅 Arrivée :</strong> {{ itinerary.segments[itinerary.segments.length - 1].arrival.at }}</p>
+                    <p><strong>🛬 Aéroport :</strong> {{ itinerary.segments[itinerary.segments.length - 1].arrival.iataCode }}</p>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let flight of savedFlights; let i = index">
+            <button class="delete-button" (click)="removeFlight(flight.id)">🗑 Supprimer</button>
+        </div>
+        
+        
+    </div>
+</div>

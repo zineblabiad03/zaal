@@ -266,3 +266,16 @@ input[type='date'] {
     color: #2c3e50;
     text-align: center;
 }
+
+.favory {
+    margin-top: 15px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background: #e74c3c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
