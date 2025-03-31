@@ -1,9 +1,0 @@
-<h2>Liste des vols</h2>
-<ul>
-  <li *ngFor="let vol of vols">
-    <strong>{{ vol.compagnie }}</strong> - De {{ vol.depart }} à {{ vol.arrivee }} - Prix : {{ vol.prix }}€
-    <button (click)="supprimerVol(vol.id)">🗑 Supprimer</button>
-  </li>
-</ul>
-
-<button (click)="ajouterVol()">Ajouter un vol</button>

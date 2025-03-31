@@ -19,8 +19,6 @@ import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './components/auth/auth.component';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MAT_DATE_FORMATS } from '@angular/material/core';
-import { VolsComponent } from './components/vols/vols.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { ConnexionComponent } from './components/connexion/connexion.component';
 import { MatInputModule } from '@angular/material/input';
@@ -32,7 +30,6 @@ import { SavedFlightsComponent } from './components/saved-flights/saved-flights.
   declarations: [
     AppComponent,
     AuthComponent,
-    VolsComponent,
     InscriptionComponent,
     ConnexionComponent,
     ListeAeroportComponent,

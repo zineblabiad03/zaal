@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import { Observer, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { FlightLocation } from '../models/flight.model';
 import { FlightSearchResponse } from '../models/flight.model';
 
@@ -65,7 +65,13 @@ export class AmadeusService {
       .set('nonStop', nonStop);
     
     if (returnDate.length > 0) {
-      params.set('returnDate', returnDate);
+      params = new HttpParams()
+      .set('originLocationCode', origin.toUpperCase())
+      .set('destinationLocationCode', destination.toUpperCase())
+      .set('departureDate', departureDate)
+      .set('returnDate', returnDate)
+      .set('adults', adults)
+      .set('nonStop', nonStop);
     }
 
     return this.http.get<FlightSearchResponse>(this.flightUrl, { headers, params });
