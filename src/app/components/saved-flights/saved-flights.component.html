@@ -24,7 +24,7 @@
         <button (click)="removeFlight(flight.id)">Supprimer</button>
     </div>
   </div> -->
-  <div class="favorites-container">
+  <div *ngIf="!noSavedFlight" class="favorites-container">
     <h2 class="favorites-title">❤️ Mes Vols Sauvegardés</h2>
 
     <div *ngFor="let flight of savedFlights; let i = index" class="flight-card">

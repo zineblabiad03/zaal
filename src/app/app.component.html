@@ -1,10 +1,10 @@
 <div class="global-container">
   <nav class="navbar">
-    <a routerLink="/sign-in"><mat-icon>login</mat-icon> <span> Connexion</span> </a>
-    <a routerLink="/sign-up"><mat-icon>person_add</mat-icon> <span>Inscription</span> </a>
-    <a routerLink="/search-flight"><mat-icon>search</mat-icon> <span>Recherche</span> </a>
-    <a routerLink="/saved-flights"><mat-icon>favorite</mat-icon> <span>Favoris</span> </a>
-    <a class="logout" color="warn" (click)="logout()">
+    <a routerLink="/sign-in" *ngIf="!authService.getIsAuthenticated()"><mat-icon>login</mat-icon> <span> Connexion</span> </a>
+    <a routerLink="/sign-up" *ngIf="!authService.getIsAuthenticated()"><mat-icon>person_add</mat-icon> <span>Inscription</span> </a>
+    <a routerLink="/search-flight" *ngIf="authService.getIsAuthenticated()"><mat-icon>search</mat-icon> <span>Recherche</span> </a>
+    <a routerLink="/saved-flights" *ngIf="authService.getIsAuthenticated()"><mat-icon>favorite</mat-icon> <span>Favoris</span> </a>
+    <a class="logout" color="warn" (click)="logout()" *ngIf="authService.getIsAuthenticated()">
       <mat-icon>logout</mat-icon>
       <span>Déconnexion</span>
     </a>
