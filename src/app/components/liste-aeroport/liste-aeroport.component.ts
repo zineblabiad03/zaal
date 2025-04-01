@@ -76,6 +76,10 @@ export class ListeAeroportComponent implements OnInit {
         const intermediate_locations = await lastValueFrom(this.flightLocationService.searchAirports(letter, 1000));
         this.locations = [...this.locations, ...intermediate_locations];
 
+        this.locations = this.locations.filter((location, index, self) =>
+          index === self.findIndex(t => t.iataCode === location.iataCode)
+        );
+
         console.log('Locations for ', letter, ': ', intermediate_locations.length);
         console.log('Total locations : ', this.locations.length);
       } catch (error) {
@@ -83,9 +87,6 @@ export class ListeAeroportComponent implements OnInit {
       }
     }
 
-    this.locations = this.locations.filter((location, index, self) =>
-      index === self.findIndex(t => t.iataCode === location.iataCode)
-    );
     console.log('Total locations bis : ', this.locations.length);
   }
 
@@ -96,9 +97,6 @@ export class ListeAeroportComponent implements OnInit {
     try {
       const response = await lastValueFrom(this.flightLocationService.getFlights(this.selectedDeparture, this.selectedArrival, this.departureDate, this.returnDate, this.numberOfPassengers, !this.stopover));
       this.flights = response.data;
-
-      console.log('Flights :');
-      console.log(this.flights);
           
       this.searchCompleted = this.flights.length > 0;
 
