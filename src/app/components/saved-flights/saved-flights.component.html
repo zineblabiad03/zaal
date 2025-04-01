@@ -1,30 +1,4 @@
-<!-- <div *ngIf="!noSavedFlight" class="results-container">
-    <h2 class="results-title">Liste des vols sauvegardés</h2>
-  
-    <div *ngFor="let flight of savedFlights; let i = index" class="flight-card">
-        
-        <h3>Vol {{ i + 1 }}</h3>
-        <div class="itinerary-container">
-            <div *ngFor="let itinerary of flight.itineraries; let j = index" class="itinerary">
-                <h3>Itinéraire {{ j + 1 }}</h3>
-                <div *ngFor="let segment of itinerary.segments" class="segment-box">
-                    <div class="segment">
-                        <p class="aeroport"> <strong>Départ :</strong> {{ segment.departure.at | date:'yyyy-MM-dd HH:mm' }}</p>
-                        <p class="aeroport"> <strong>Aéroport :</strong> {{ segment.departure.iataCode }} </p>
-                    </div>
-                    <p class="duration"> <strong>Durée :</strong> {{ segment.duration }}</p>
-                    <div class="segment">
-                        <p class="aeroport"> <strong>Arrivée :</strong> {{ segment.arrival.at | date:'yyyy-MM-dd HH:mm' }}</p>
-                        <p class="aeroport"> <strong>Aéroport :</strong> {{ segment.arrival.iataCode }} </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="flight-price-bottom">💰 Prix : {{ flight.price.grandTotal }} {{ flight.price.currency }}</div>
-        <button (click)="removeFlight(flight.id)">Supprimer</button>
-    </div>
-  </div> -->
-  <div *ngIf="!noSavedFlight" class="favorites-container">
+<div *ngIf="!noSavedFlight" class="favorites-container">
     <h2 class="favorites-title">❤️ Mes Vols Sauvegardés</h2>
 
     <div *ngFor="let flight of savedFlights; let i = index" class="flight-card">
@@ -38,23 +12,24 @@
 
             <div class="itinerary-details">
                 <div *ngFor="let segment of itinerary.segments" class="segment-box">
-                    <div class="departure">
-                        <p><strong>📅 Départ :</strong> {{ segment.departure.at | date:'yyyy-MM-dd HH:mm' }} </p>
-                        <p><strong>🛫 Aéroport :</strong> {{ segment.departure.iataCode }} </p>
-                    </div>
+                    <div class="segment-info">
+                        <div class="departure">
+                            <p class="info"><strong>📅 Départ :</strong> {{ segment.departure.at | date:'yyyy-MM-dd HH:mm' }} </p>
+                            <p class="info"><strong>🛫 Aéroport :</strong> {{ segment.departure.iataCode }} </p>
+                        </div>
 
-                    <div class="duration">
-                        <p>⏳ {{ segment.duration }}</p>
-                    </div>
+                        <div class="duration">
+                            <p class="info">⏳ {{ segment.duration }}</p>
+                        </div>
 
-                    <div class="arrival">
-                        <p><strong>📅 Arrivée :</strong> {{ segment.arrival.at | date:'yyyy-MM-dd HH:mm' }} </p>
-                        <p><strong>🛬 Aéroport :</strong> {{ segment.arrival.iataCode }} </p>
+                        <div class="arrival">
+                            <p class="info"><strong>📅 Arrivée :</strong> {{ segment.arrival.at | date:'yyyy-MM-dd HH:mm' }} </p>
+                            <p class="info"><strong>🛬 Aéroport :</strong> {{ segment.arrival.iataCode }} </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <button class="delete-button" (click)="removeFlight(flight.id)">🗑 Supprimer</button>
-        
     </div>
 </div>

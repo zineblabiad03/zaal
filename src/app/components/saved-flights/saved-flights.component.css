@@ -17,7 +17,7 @@
 /* Carte de vol */
 .flight-card {
     background: white;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -64,8 +64,8 @@
 /* Détails de l'itinéraire */
 .itinerary-details {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
     background: white;
     padding: 12px;
     border-radius: 6px;
@@ -73,29 +73,32 @@
     margin-top: 10px;
 }
 
-/* Informations départ & arrivée */
-.departure p, .arrival p, .duration p {
-    font-size: 16px;
-    font-weight: bold;
-    color: black; /* Texte en noir */
-    margin: 0;
+/* Informations organisées proprement */
+.segment-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-/* Icônes et libellés en couleur, mais infos en noir */
-.departure strong, .arrival strong, .duration strong {
-    color: #e63946; /* Rouge pour mettre en valeur les titres */
-}
-
-/* Durée du vol */
-.duration {
+/* Départ, arrivée et durée en colonnes */
+.departure, .arrival, .duration {
+    flex: 1;
     text-align: center;
+    
+}
+
+/* Icônes et libellés en couleur */
+.departure strong, .arrival strong, .duration strong {
+    color: #e63946;
 }
 
 /* Bouton supprimer */
 .delete-button {
     background: #e63946;
     color: white;
-    padding: 10px 15px;
+    padding: 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -108,4 +111,8 @@
 
 .delete-button:hover {
     background: #c62828;
+}
+.info{
+    color: black;
+    font-weight: bold;
 }
