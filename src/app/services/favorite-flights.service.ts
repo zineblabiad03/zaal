@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc, query, where, getDocs, deleteDoc, doc } from '@angular/fire/firestore';
-import { FlightLocation, FlightOffer } from '../models/flight.model';
+import { FlightOffer } from '../models/flight.model';
 import { Observable } from 'rxjs';
 import { collectionData } from 'rxfire/firestore';
 

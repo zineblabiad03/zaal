@@ -47,27 +47,6 @@ export class ListeAeroportComponent implements OnInit {
     await this.loadFlightLocations();
   }
 
-  async onSearchChange(type: 'departure' | 'arrival') {
-    if (type === 'departure' && this.selectedDeparture.length > 0) {
-      const lowerCasePattern = this.selectedDeparture.toLowerCase();
-      this.flightLocationsDeparture = this.locations.filter(location =>
-        location.iataCode.toLowerCase().startsWith(lowerCasePattern)
-      );
-
-      this.flightLocationsDeparture.sort((a, b) => a.iataCode.localeCompare(b.iataCode));
-    } else if (type === 'arrival' && this.selectedArrival.length > 0) {
-      const lowerCasePattern = this.selectedArrival.toLowerCase();
-      this.flightLocationsArrival = this.locations.filter(location =>
-        location.iataCode.toLowerCase().startsWith(lowerCasePattern)
-      );
-
-      this.flightLocationsArrival.sort((a, b) => a.iataCode.localeCompare(b.iataCode));
-    } else {
-      this.flightLocationsDeparture = [];
-      this.flightLocationsArrival = [];
-    }
-  }
-
   async loadFlightLocations() {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
@@ -88,6 +67,27 @@ export class ListeAeroportComponent implements OnInit {
     }
 
     console.log('Total locations bis : ', this.locations.length);
+  }
+
+  async onSearchChange(type: 'departure' | 'arrival') {
+    if (type === 'departure' && this.selectedDeparture.length > 0) {
+      const lowerCasePattern = this.selectedDeparture.toLowerCase();
+      this.flightLocationsDeparture = this.locations.filter(location =>
+        location.iataCode.toLowerCase().startsWith(lowerCasePattern)
+      );
+
+      this.flightLocationsDeparture.sort((a, b) => a.iataCode.localeCompare(b.iataCode));
+    } else if (type === 'arrival' && this.selectedArrival.length > 0) {
+      const lowerCasePattern = this.selectedArrival.toLowerCase();
+      this.flightLocationsArrival = this.locations.filter(location =>
+        location.iataCode.toLowerCase().startsWith(lowerCasePattern)
+      );
+
+      this.flightLocationsArrival.sort((a, b) => a.iataCode.localeCompare(b.iataCode));
+    } else {
+      this.flightLocationsDeparture = [];
+      this.flightLocationsArrival = [];
+    }
   }
 
   async searchFlights() {

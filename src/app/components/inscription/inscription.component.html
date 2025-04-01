@@ -13,8 +13,8 @@
 
     <button type="submit" (click)="inscrire()">S'inscrire</button>
 
-    <p *ngIf="messageErreur" style="color: red;">{{ messageErreur }}</p>
-    <p *ngIf="messageSucces" style="color: green;">{{ messageSucces }}</p>
+    <p *ngIf="messageErreur.length > 0" style="color: red;">{{ messageErreur }}</p>
+    <p *ngIf="messageSucces.length > 0" style="color: green;">{{ messageSucces }}</p>
     <div class="exclude-white-text">
     </div>
   </div>

@@ -18,7 +18,8 @@ const routes: Routes = [
   },
   { 
     path: 'sign-up',
-    component: InscriptionComponent
+    component: InscriptionComponent,
+    ...canActivate(redirectLoggedInToItems)
   },
   { 
     path: 'search-flight',

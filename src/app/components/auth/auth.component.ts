@@ -16,25 +16,27 @@ export class AuthComponent {
   async signUp() {
     const success = await this.authService.signUp(this.email, this.password);
     if (success) {
-        this.router.navigate(['/sign-in']);
+      console.log('Inscription réalisée avec succès.');
+      this.router.navigate(['/sign-in']);
     } else {
-        console.error('Failed');
+      console.error("Erreur lors de l'inscription.");
     }
   }
 
   async signIn() {
     const success = await this.authService.signIn(this.email, this.password);
     if (success) {
-        this.router.navigate(['/search-flight']);
+      console.log('Connexion réalisée avec succès.');
+      this.router.navigate(['/search-flight']);
     } else {
-        console.error('Failed');
+      console.error("Erreur lors de la connexion.");
     }
   }
 
   async signOut() {
     const success = await this.authService.signOut();
     if (success) {
-      console.error('Log out');
+      console.log('Déconnexion réalisée avec succès.');
     } else {
         console.error('Failed');
     }

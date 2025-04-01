@@ -37,7 +37,7 @@ export class AuthService {
       const utilisateur = await signInWithEmailAndPassword(this.auth, email, password);
       if (!utilisateur.user.emailVerified) {
         await signOut(this.auth);
-        console.log("Echec de verification d'email");
+        console.log("Echec de verification d'email.");
         return false;
       }
       console.log('Success');
@@ -45,7 +45,7 @@ export class AuthService {
     } catch (error: any) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log('Failed:', errorCode, errorMessage);
+      console.log('Sign In Failed:', errorCode, errorMessage);
       return false;
     }
   }
@@ -55,7 +55,7 @@ export class AuthService {
       await signOut(this.auth);
       return true;
     } catch (error) {
-      console.error('Sign Out Error:', error);
+      console.error('Sign Out Failed:', error);
       return false;
     }
   }

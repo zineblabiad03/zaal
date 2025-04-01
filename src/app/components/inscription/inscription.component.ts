@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inscription',
@@ -15,18 +14,12 @@ export class InscriptionComponent {
   messageErreur: string = '';
   messageSucces: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService) {}
   
   async inscrire() {
 
     if (!this.emailValide(this.email)) {
       this.messageErreur = 'Entrez un email valide.';
-      this.messageSucces = '';
-      return;
-    }
-
-    if (this.motDePasse !== this.confirmerMotDePasse) {
-      this.messageErreur = 'Les mots de passe ne correspondent pas.';
       this.messageSucces = '';
       return;
     }
@@ -37,7 +30,14 @@ export class InscriptionComponent {
       return;
     }
 
+    if (this.motDePasse !== this.confirmerMotDePasse) {
+      this.messageErreur = 'Les mots de passe ne correspondent pas.';
+      this.messageSucces = '';
+      return;
+    }
+
     const success = await this.authService.signUp(this.email, this.motDePasse);
+
     if (success) {
       await this.authService.signOut();
       this.messageErreur = '';
@@ -45,19 +45,18 @@ export class InscriptionComponent {
       this.email = '';
       this.motDePasse = '';
       this.confirmerMotDePasse = '';
-      //this.router.navigate(['/sign-in'], {queryParams: { compteCree: 'true'}});
     } else {
-      this.messageErreur = "Oups ... Une erreur technique s'est produite.";
+      this.messageErreur = "Oups ... L'adresse mail utilisée existe déjà.";
       this.messageSucces = '';
-      console.error('Failed to sign up.');
+      console.error(this.messageErreur);
     }
   }
 
-  emailValide(email: string): boolean {
+  private emailValide(email: string): boolean {
     return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
   }
 
-  motDePasseValide(motDePasse: string): boolean {
+  private motDePasseValide(motDePasse: string): boolean {
     return motDePasse.length >= 6;
   }
 
