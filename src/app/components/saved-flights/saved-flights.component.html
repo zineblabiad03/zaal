@@ -37,25 +37,24 @@
             <h4>🛤 Itinéraire {{ j + 1 }}</h4>
 
             <div class="itinerary-details">
-                <div class="departure">
-                    <p><strong>📅 Départ :</strong> {{ itinerary.segments[0].departure.at }}</p>
-                    <p><strong>🛫 Aéroport :</strong> {{ itinerary.segments[0].departure.iataCode }}</p>
-                </div>
+                <div *ngFor="let segment of itinerary.segments" class="segment-box">
+                    <div class="departure">
+                        <p><strong>📅 Départ :</strong> {{ segment.departure.at | date:'yyyy-MM-dd HH:mm' }} </p>
+                        <p><strong>🛫 Aéroport :</strong> {{ segment.departure.iataCode }} </p>
+                    </div>
 
-                <div class="duration">
-                    <p>⏳ {{ itinerary.duration }}</p>
-                </div>
+                    <div class="duration">
+                        <p>⏳ {{ segment.duration }}</p>
+                    </div>
 
-                <div class="arrival">
-                    <p><strong>📅 Arrivée :</strong> {{ itinerary.segments[itinerary.segments.length - 1].arrival.at }}</p>
-                    <p><strong>🛬 Aéroport :</strong> {{ itinerary.segments[itinerary.segments.length - 1].arrival.iataCode }}</p>
+                    <div class="arrival">
+                        <p><strong>📅 Arrivée :</strong> {{ segment.arrival.at | date:'yyyy-MM-dd HH:mm' }} </p>
+                        <p><strong>🛬 Aéroport :</strong> {{ segment.arrival.iataCode }} </p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div *ngFor="let flight of savedFlights; let i = index">
-            <button class="delete-button" (click)="removeFlight(flight.id)">🗑 Supprimer</button>
-        </div>
-        
+        <button class="delete-button" (click)="removeFlight(flight.id)">🗑 Supprimer</button>
         
     </div>
 </div>
