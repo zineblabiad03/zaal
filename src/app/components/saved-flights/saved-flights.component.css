@@ -1,115 +1,111 @@
-Conteneur principal
-.results-container {
+/* Conteneur principal */
+.favorites-container {
     padding: 20px;
     background-color: #f4f4f4;
+    border-radius: 10px;
 }
 
-/* Titre des résultats */
-.results-title {
+/* Titre principal */
+.favorites-title {
     text-align: center;
-    font-size: 24px; /* Augmenter légèrement la taille du titre */
+    font-size: 24px;
+    font-weight: bold;
+    color: #e63946;
     margin-bottom: 20px;
-    color: #333;
 }
 
-/* Carte de chaque vol */
+/* Carte de vol */
 .flight-card {
     background: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Prix du vol affiché en haut */
-.flight-price {
-    font-size: 20px; /* Augmenter légèrement la taille du prix en haut */
+/* En-tête du vol */
+.flight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e6f0ff;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 18px;
     font-weight: bold;
-    color: #0d1691;
-    text-align: right;
+    color: #007bff;
 }
 
-/* Prix du vol affiché en bas */
-.flight-price-bottom {
-    font-size: 20px; /* Augmenter légèrement la taille du prix en bas */
+/* Prix */
+.flight-price {
+    font-size: 18px;
     font-weight: bold;
-    color: #0d1691;
-    text-align: center; /* Centré en bas de chaque carte */
-    margin-top: 15px;
+    color: #d19c2f;
 }
 
 /* Conteneur des itinéraires */
-.itinerary-container {
-    margin-top: 15px;
-}
-
-/* Chaque itinéraire */
 .itinerary {
     background: #f8f8f8;
     padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
 }
 
-.itinerary h3 {
-    font-size: 22px; /* Augmenter un peu la taille du titre de l'itinéraire */
+/* Titre des itinéraires */
+.itinerary h4 {
+    font-size: 20px;
     font-weight: bold;
-    color: #007bff; /* Bleu pour meilleure visibilité */
-    background: #e6f0ff; /* Fond bleu clair pour contraste */
+    color: #007bff;
+    background: #e6f0ff;
     padding: 8px;
     border-radius: 6px;
-    text-transform: uppercase;
 }
 
-.flight-card h3 {
-    font-size: 22px; /* Augmenter un peu la taille du titre de l'itinéraire */
-    font-weight: bold;
-    color: #007bff; /* Bleu pour meilleure visibilité */
-    background: #e6f0ff; /* Fond bleu clair pour contraste */
-    padding: 8px;
-    border-radius: 6px;
-    text-transform: uppercase;
-}
-
-/* Boîte pour chaque segment (trajet) */
-.segment-box {
-    background: white;
-    padding: 12px; /* Réduire un peu la taille du padding */
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 8px;
-    display: flex; /* Utilisation de Flexbox */
-    justify-content: space-between; /* Aligner les éléments */
-    align-items: center; /* Centrer verticalement */
-}
-
-/* Segments (départ et arrivée) */
-.segment {
-    padding: 5px;
-    display: flex; /* Utilisation de Flexbox pour aligner les éléments */
-    justify-content: space-between; /* Met les informations sur la même ligne */
+/* Détails de l'itinéraire */
+.itinerary-details {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
 }
 
-/* Détails du segment */
-.segment p {
-    font-size: 18px; /* Augmenter un peu la taille du texte pour les détails */
+/* Informations départ & arrivée */
+.departure p, .arrival p, .duration p {
+    font-size: 16px;
     font-weight: bold;
-    color: #333; /* Texte foncé pour lisibilité */
-    margin: 0 10px; /* Espacement entre les éléments */
-    display: inline-block; /* Garder les informations sur une ligne */
+    color: black; /* Texte en noir */
+    margin: 0;
 }
 
-/* Code IATA plus distinct */
-.segment p strong {
-    font-size: 20px; /* Augmenter un peu la taille du code IATA */
-    color: #d9534f; /* Rouge pour attirer l'œil */
+/* Icônes et libellés en couleur, mais infos en noir */
+.departure strong, .arrival strong, .duration strong {
+    color: #e63946; /* Rouge pour mettre en valeur les titres */
 }
 
 /* Durée du vol */
 .duration {
-    font-size: 16px; /* Augmenter un peu la taille de la durée */
-    font-weight: bold;
-    color: #2c3e50;
     text-align: center;
+}
+
+/* Bouton supprimer */
+.delete-button {
+    background: #e63946;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.delete-button:hover {
+    background: #c62828;
 }
