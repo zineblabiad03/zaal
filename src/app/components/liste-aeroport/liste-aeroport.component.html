@@ -60,18 +60,18 @@
                 <h3>Itinéraire {{ j + 1 }}</h3>
                 <div *ngFor="let segment of itinerary.segments" class="segment-box">
                     <div class="segment">
-                        <p class="aeroport"> <strong>Départ :</strong> {{ segment.departure.at | date:'yyyy-MM-dd HH:mm' }}</p>
+                        <p class="aeroport"> <strong>Départ :</strong> {{ segment.departure.at | date:'yyyy-MM-dd à HH' }}H{{ segment.departure.at | date:'mm' }}M</p>
                         <p class="aeroport"> <strong>Aéroport :</strong> {{ segment.departure.iataCode }} </p>
                     </div>
-                    <p class="duration"> <strong>Durée :</strong> {{ segment.duration }}</p>
+                    <p class="duration"> <strong>Durée :</strong> {{ segment.duration.replace('PT', '') }}</p>
                     <div class="segment">
-                        <p class="aeroport"> <strong>Arrivée :</strong> {{ segment.arrival.at | date:'yyyy-MM-dd HH:mm' }}</p>
+                        <p class="aeroport"> <strong>Arrivée :</strong> {{ segment.departure.at | date:'yyyy-MM-dd à HH' }}H{{ segment.departure.at | date:'mm' }}M</p>
                         <p class="aeroport"> <strong>Aéroport :</strong> {{ segment.arrival.iataCode }} </p>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <button class="favory" (click)="saveToFavorites(flight)">Save to Favorites</button>
         <div class="flight-price-bottom">💰 Prix : {{ flight.price.grandTotal }} {{ flight.price.currency }}</div>
     </div>

@@ -3,7 +3,7 @@ import { AmadeusService } from '../../services/amadeus.service';
 import { FavoriteFlightsService } from '../../services/favorite-flights.service';
 import { AuthService } from '../../services/auth.service';
 import { FlightLocation, FlightOffer } from '../../models/flight.model';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, timeout  } from 'rxjs';
 
 @Component({
   selector: 'app-liste-aeroport',
@@ -93,9 +93,31 @@ export class ListeAeroportComponent implements OnInit {
   async searchFlights() {
     this.flights = [];
     this.searchCompleted = false;
+    this.messageRecherche = '';
     
     try {
-      const response = await lastValueFrom(this.flightLocationService.getFlights(this.selectedDeparture, this.selectedArrival, this.departureDate, this.returnDate, this.numberOfPassengers, !this.stopover));
+      if (!this.selectedDeparture) {
+        this.messageRecherche = 'Départ à renseigner !';
+        return;
+      }
+
+      if (!this.selectedArrival) {
+        this.messageRecherche = 'Arrivée à renseigner !';
+        return;
+      }
+
+      if (!this.departureDate) {
+        this.messageRecherche = 'Date de départ à renseigner !';
+        return;
+      }
+
+      if (this.selectedDeparture == this.selectedArrival) {
+        this.messageRecherche = 'Itinéraire non valide !';
+        return;
+      }
+
+      const response = await lastValueFrom(this.flightLocationService.getFlights(this.selectedDeparture, this.selectedArrival, this.departureDate, this.returnDate, this.numberOfPassengers, !this.stopover)
+      .pipe(timeout(5000)));
       this.flights = response.data;
           
       this.searchCompleted = this.flights.length > 0;
