@@ -1,26 +1,27 @@
 /* Conteneur principal */
 .favorites-container {
+    background: #303336; /* Gris plus doux pour éviter un contraste trop fort */
     padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.05);
 }
 
 /* Titre principal */
 .favorites-title {
     text-align: center;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
-    color: #e63946;
+    color: #cfd8dc; /* Gris bleuté clair */
     margin-bottom: 20px;
 }
 
 /* Carte de vol */
 .flight-card {
-    background: white;
+    background: #51575e; /* Gris acier clair */
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.08);
 }
 
 /* En-tête du vol */
@@ -28,24 +29,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #e6f0ff;
-    padding: 10px;
+    background: #5b6168; /* Gris bleuté */
+    padding: 12px;
     border-radius: 6px;
     font-size: 18px;
     font-weight: bold;
-    color: #007bff;
+    color: #90caf9; /* Bleu clair */
 }
 
 /* Prix */
 .flight-price {
     font-size: 18px;
     font-weight: bold;
-    color: #d19c2f;
+    color: #ffca28; /* Jaune doré */
 }
 
 /* Conteneur des itinéraires */
 .itinerary {
-    background: #f8f8f8;
+    background: #676d74; /* Gris clair et doux */
     padding: 10px;
     border-radius: 6px;
     margin-top: 10px;
@@ -55,8 +56,8 @@
 .itinerary h4 {
     font-size: 20px;
     font-weight: bold;
-    color: #007bff;
-    background: #e6f0ff;
+    color: #90caf9; /* Bleu clair */
+    background: #5b6168; /* Gris foncé mais plus doux */
     padding: 8px;
     border-radius: 6px;
 }
@@ -66,10 +67,10 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background: white;
+    background: #595f66; /* Gris charbon éclairci */
     padding: 12px;
     border-radius: 6px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 5px rgba(255, 255, 255, 0.08);
     margin-top: 10px;
 }
 
@@ -79,24 +80,23 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #7a828a;
 }
 
 /* Départ, arrivée et durée en colonnes */
 .departure, .arrival, .duration {
     flex: 1;
     text-align: center;
-    
 }
 
 /* Icônes et libellés en couleur */
 .departure strong, .arrival strong, .duration strong {
-    color: #e63946;
+    color: #64b5f6; /* Bleu un peu plus vif */
 }
 
 /* Bouton supprimer */
 .delete-button {
-    background: #e63946;
+    background: #ff4d4d; /* Rouge vif pour le bouton */
     color: white;
     padding: 12px;
     border: none;
@@ -107,12 +107,15 @@
     margin-top: 15px;
     text-align: center;
     font-weight: bold;
+    transition: background 0.3s ease;
 }
 
 .delete-button:hover {
     background: #c62828;
 }
-.info{
-    color: black;
+
+/* Texte d'information */
+.info {
+    color: #e0e0e0;
     font-weight: bold;
 }
