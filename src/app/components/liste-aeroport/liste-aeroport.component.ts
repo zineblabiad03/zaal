@@ -73,14 +73,14 @@ export class ListeAeroportComponent implements OnInit {
     if (type === 'departure' && this.selectedDeparture.length > 0) {
       const lowerCasePattern = this.selectedDeparture.toLowerCase();
       this.flightLocationsDeparture = this.locations.filter(location =>
-        location.iataCode.toLowerCase().startsWith(lowerCasePattern)
+        location.iataCode.toLowerCase().startsWith(lowerCasePattern) || location.name.toLowerCase().startsWith(lowerCasePattern)
       );
 
       this.flightLocationsDeparture.sort((a, b) => a.iataCode.localeCompare(b.iataCode));
     } else if (type === 'arrival' && this.selectedArrival.length > 0) {
       const lowerCasePattern = this.selectedArrival.toLowerCase();
       this.flightLocationsArrival = this.locations.filter(location =>
-        location.iataCode.toLowerCase().startsWith(lowerCasePattern)
+        location.iataCode.toLowerCase().startsWith(lowerCasePattern) || location.name.toLowerCase().startsWith(lowerCasePattern)
       );
 
       this.flightLocationsArrival.sort((a, b) => a.iataCode.localeCompare(b.iataCode));

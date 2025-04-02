@@ -30,7 +30,7 @@ const routes: Routes = [
     component: SavedFlightsComponent,
     ...canActivate(redirectUnauthorizedToLogin)
   },
-  { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
+  { path: '**', redirectTo: 'sign-in', pathMatch: 'full' }
 ];
 
 @NgModule({
