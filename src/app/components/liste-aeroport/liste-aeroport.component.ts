@@ -52,7 +52,7 @@ export class ListeAeroportComponent implements OnInit {
 
     for(const letter of letters) {
       try {
-        const intermediate_locations = await lastValueFrom(this.flightLocationService.searchAirports(letter, 1000));
+        const intermediate_locations = await lastValueFrom(this.flightLocationService.searchAirports(letter, 5000));
         this.locations = [...this.locations, ...intermediate_locations];
 
         this.locations = this.locations.filter((location, index, self) =>
