@@ -59,7 +59,10 @@
   
     <div *ngFor="let flight of flights; let i = index" class="flight-card">
         
-        <h3>Vol {{ i + 1 }}</h3>
+        <div class="flight-header">
+            <h3>✈️ Vol {{ i + 1 }}</h3>
+            <span class="flight-price">💰 Prix : {{ flight.price.total }} {{ flight.price.currency }}</span>
+        </div>
         <div class="itinerary-container">
             <div *ngFor="let itinerary of flight.itineraries; let j = index" class="itinerary">
                 <h3>Itinéraire {{ j + 1 }}</h3>
@@ -78,7 +81,6 @@
         </div>
 
         <button class="favory" (click)="saveToFavorites(flight)">Save to Favorites</button>
-        <div class="flight-price-bottom">💰 Prix : {{ flight.price.grandTotal }} {{ flight.price.currency }}</div>
     </div>
   </div>
   

@@ -260,6 +260,26 @@ input[type='date'] {
     margin-top: 10px;
 }
 
+/* En-tête du vol */
+.flight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #5b6168; /* Gris bleuté */
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #90caf9; /* Bleu clair */
+}
+
+/* Prix */
+.flight-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffca28; /* Jaune doré */
+}
+
 .loading-spinner {
     position: fixed;  /* Full-screen overlay */
     top: 0;
