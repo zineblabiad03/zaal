@@ -12,21 +12,23 @@ export class SavedFlightsComponent implements OnInit {
   savedFlights: any[] = [];
   noSavedFlight: boolean = true;
 
-  loading: boolean = true;
+  loading: boolean = false;
 
   constructor(
     private favoriteFlightsService: FavoriteFlightsService,
     private authService: AuthService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.loading = true;
-    this.loadSavedFlights();
+    await this.loadSavedFlights(); // Charge les vols favoris
     this.loading = false;
   }
+  
 
   async loadSavedFlights() {
-    for (let i = 0; i < 10000000000; i++) {}
+    this.loading = true;
+
     const user = await firstValueFrom(this.authService.getUser());
     
     if (user) {

@@ -33,7 +33,7 @@ export class ListeAeroportComponent implements OnInit {
 
   messageRecherche: string = '';
 
-  loading: boolean = true;
+  loading: boolean = false;
 
   constructor(
     private flightLocationService: AmadeusService,
