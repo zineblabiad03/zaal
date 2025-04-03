@@ -146,141 +146,118 @@ input[type='date'] {
     }
 }
 
-
-
-
-
-
 /* Conteneur principal */
 .results-container {
+    background: #4D525A; /* Gris doux pour une meilleure intégration avec le thème sombre */
     padding: 20px;
-    background-color: #f4f4f4;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.05);
 }
 
-/* Titre des résultats */
+/* Titre principal */
 .results-title {
     text-align: center;
-    font-size: 24px; /* Augmenter légèrement la taille du titre */
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
     margin-bottom: 20px;
-    color: #333;
 }
 
-/* Carte de chaque vol */
+/* Carte de vol */
 .flight-card {
-    background: white;
+    background: #3B3F46; /* Gris plus foncé pour démarquer du fond */
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    color: #EAEAEA; /* Texte clair pour lisibilité */
 }
 
-/* Prix du vol affiché en haut */
-.flight-price {
-    font-size: 20px; /* Augmenter légèrement la taille du prix en haut */
+/* En-tête des vols */
+.flight-card h3 {
+    font-size: 20px;
     font-weight: bold;
-    color: #0d1691;
-    text-align: right;
-}
-
-/* Prix du vol affiché en bas */
-.flight-price-bottom {
-    font-size: 20px; /* Augmenter légèrement la taille du prix en bas */
-    font-weight: bold;
-    color: #0d1691;
-    text-align: center; /* Centré en bas de chaque carte */
-    margin-top: 15px;
+    color: #FFD700; /* Doré pour donner une touche premium */
 }
 
 /* Conteneur des itinéraires */
 .itinerary-container {
-    margin-top: 15px;
-}
-
-/* Chaque itinéraire */
-.itinerary {
-    background: #f8f8f8;
+    background: #565A63;
     padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
 }
 
+/* Titres des itinéraires */
 .itinerary h3 {
-    font-size: 22px; /* Augmenter un peu la taille du titre de l'itinéraire */
+    font-size: 18px;
     font-weight: bold;
-    color: #007bff; /* Bleu pour meilleure visibilité */
-    background: #e6f0ff; /* Fond bleu clair pour contraste */
+    color: #6DA3F9; /* Bleu doux pour une meilleure hiérarchie */
+    background: #41454D;
     padding: 8px;
     border-radius: 6px;
-    text-transform: uppercase;
 }
 
-.flight-card h3 {
-    font-size: 22px; /* Augmenter un peu la taille du titre de l'itinéraire */
-    font-weight: bold;
-    color: #007bff; /* Bleu pour meilleure visibilité */
-    background: #e6f0ff; /* Fond bleu clair pour contraste */
-    padding: 8px;
-    border-radius: 6px;
-    text-transform: uppercase;
-}
-
-/* Boîte pour chaque segment (trajet) */
+/* Segment des vols */
 .segment-box {
-    background: white;
-    padding: 12px; /* Réduire un peu la taille du padding */
-    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #3B3F46;
+    padding: 12px;
+    border-radius: 6px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 8px;
-    display: flex; /* Utilisation de Flexbox */
-    justify-content: space-between; /* Aligner les éléments */
-    align-items: center; /* Centrer verticalement */
+    margin-top: 10px;
 }
 
-/* Segments (départ et arrivée) */
+/* Détails de chaque segment */
 .segment {
-    padding: 5px;
-    display: flex; /* Utilisation de Flexbox pour aligner les éléments */
-    justify-content: space-between; /* Met les informations sur la même ligne */
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding: 10px;
 }
 
-/* Détails du segment */
-.segment p {
-    font-size: 18px; /* Augmenter un peu la taille du texte pour les détails */
-    font-weight: bold;
-    color: #333; /* Texte foncé pour lisibilité */
-    margin: 0 10px; /* Espacement entre les éléments */
-    display: inline-block; /* Garder les informations sur une ligne */
-}
-
-/* Code IATA plus distinct */
-.segment p strong {
-    font-size: 20px; /* Augmenter un peu la taille du code IATA */
-    color: #d9534f; /* Rouge pour attirer l'œil */
+/* Infos des aéroports */
+.aeroport {
+    color: #EAEAEA;
+    font-size: 16px;
 }
 
 /* Durée du vol */
 .duration {
-    font-size: 16px; /* Augmenter un peu la taille de la durée */
+    font-size: 16px;
     font-weight: bold;
-    color: #2c3e50;
+    color: #FFB347; /* Orange doux pour attirer l'œil */
     text-align: center;
 }
 
+/* Bouton "Save to Favorites" */
 .favory {
-    margin-top: 10px;
-    padding: 8px 14px; /* Légèrement plus grand */
-    font-size: 14px; /* Taille du texte augmentée */
-    font-weight: bold;
+    background: #4CAF50; /* Vert pour différencier de la suppression */
     color: white;
-    background: #e74c3c;
+    padding: 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.3s;
-    width: auto;
-    max-width: 160px; /* Ajustement de la largeur */
+    width: 30%;
+    font-size: 16px;
+    margin-top: 15px;
     text-align: center;
+    font-weight: bold;
+}
+
+.favory:hover {
+    background: #388E3C;
+}
+
+/* Affichage du prix */
+.flight-price-bottom {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFD700;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .loading-spinner {
@@ -309,4 +286,3 @@ input[type='date'] {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
-  
