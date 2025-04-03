@@ -33,6 +33,8 @@ export class ListeAeroportComponent implements OnInit {
 
   messageRecherche: string = '';
 
+  loading: boolean = true;
+
   constructor(
     private flightLocationService: AmadeusService,
     private favoriteFlightsService: FavoriteFlightsService,
@@ -44,7 +46,9 @@ export class ListeAeroportComponent implements OnInit {
       this.userId = user ? user.uid : '';
     });
 
+    this.loading = true;
     await this.loadFlightLocations();
+    this.loading = false;
   }
 
   async loadFlightLocations() {

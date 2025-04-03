@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FavoriteFlightsService } from '../../services/favorite-flights.service';
 import { AuthService } from '../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
-import { FlightOffer } from '../../models/flight.model';
 
 @Component({
   selector: 'app-saved-flights',
@@ -13,16 +12,21 @@ export class SavedFlightsComponent implements OnInit {
   savedFlights: any[] = [];
   noSavedFlight: boolean = true;
 
+  loading: boolean = true;
+
   constructor(
     private favoriteFlightsService: FavoriteFlightsService,
     private authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.loading = true;
     this.loadSavedFlights();
+    this.loading = false;
   }
 
   async loadSavedFlights() {
+    for (let i = 0; i < 10000000000; i++) {}
     const user = await firstValueFrom(this.authService.getUser());
     
     if (user) {
@@ -34,6 +38,7 @@ export class SavedFlightsComponent implements OnInit {
   }
 
   async removeFlight(docId: string) {
+    this.loading = true;
     try {
       const user = await firstValueFrom(this.authService.getUser());
       if (user) {
@@ -43,6 +48,7 @@ export class SavedFlightsComponent implements OnInit {
     } catch (error) {
       console.error('Error removing flight:', error);
     }
+    this.loading = false;
   }
 
 }

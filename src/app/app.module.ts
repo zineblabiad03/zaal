@@ -16,7 +16,6 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
 
 import { FormsModule } from '@angular/forms';
-import { AuthComponent } from './components/auth/auth.component';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { InscriptionComponent } from './components/inscription/inscription.component';
@@ -29,7 +28,6 @@ import { SavedFlightsComponent } from './components/saved-flights/saved-flights.
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
     InscriptionComponent,
     ConnexionComponent,
     ListeAeroportComponent,

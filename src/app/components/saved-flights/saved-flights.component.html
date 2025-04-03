@@ -1,4 +1,9 @@
-<div *ngIf="!noSavedFlight" class="favorites-container">
+<div *ngIf="loading" class="loading-spinner">
+    <div class="spinner"></div>
+    <!-- <p>Refreshing flight data...</p> -->
+</div>
+
+<div *ngIf="!loading && !noSavedFlight" class="favorites-container">
     <h2 class="favorites-title">❤️ Mes Vols Sauvegardés</h2>
 
     <div *ngFor="let flight of savedFlights; let i = index" class="flight-card">

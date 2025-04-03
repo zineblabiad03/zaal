@@ -18,8 +18,7 @@ const routes: Routes = [
   },
   { 
     path: 'sign-up',
-    component: InscriptionComponent,
-    ...canActivate(redirectLoggedInToItems)
+    component: InscriptionComponent
   },
   { 
     path: 'search-flight',
@@ -30,7 +29,7 @@ const routes: Routes = [
     component: SavedFlightsComponent,
     ...canActivate(redirectUnauthorizedToLogin)
   },
-  { path: '**', redirectTo: 'sign-in', pathMatch: 'full' }
+  { path: '**', redirectTo: 'sign-in', pathMatch: 'full' },
 ];
 
 @NgModule({
