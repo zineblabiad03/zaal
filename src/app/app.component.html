@@ -1,12 +1,12 @@
 <div class="global-container">
   <nav class="navbar">
-    <a routerLink="/sign-in" *ngIf="!authService.getIsAuthenticated()"><mat-icon>login</mat-icon> <span> Connexion</span> </a>
-    <a routerLink="/sign-up" *ngIf="!authService.getIsAuthenticated()"><mat-icon>person_add</mat-icon> <span>Inscription</span> </a>
-    <a routerLink="/search-flight" *ngIf="authService.getIsAuthenticated()"><mat-icon>search</mat-icon> <span>Recherche</span> </a>
-    <a routerLink="/saved-flights" *ngIf="authService.getIsAuthenticated()"><mat-icon>favorite</mat-icon> <span>Favoris</span> </a>
+    <a routerLink="/sign-in" *ngIf="!authService.getIsAuthenticated()"><mat-icon>login</mat-icon> <span class="nav-identifier">Connexion</span> </a>
+    <a routerLink="/sign-up" *ngIf="!authService.getIsAuthenticated()"><mat-icon>person_add</mat-icon> <span class="nav-identifier">Inscription</span> </a>
+    <a routerLink="/search-flight" *ngIf="authService.getIsAuthenticated()"><mat-icon>search</mat-icon> <span class="nav-identifier">Recherche</span> </a>
+    <a routerLink="/saved-flights" *ngIf="authService.getIsAuthenticated()"><mat-icon>favorite</mat-icon> <span class="nav-identifier">Favoris</span> </a>
     <a class="logout" color="warn" (click)="logout()" *ngIf="authService.getIsAuthenticated()">
       <mat-icon>logout</mat-icon>
-      <span>Déconnexion</span>
+      <span class="nav-identifier">Déconnexion</span>
     </a>
   </nav>
 

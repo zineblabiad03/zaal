@@ -89,3 +89,8 @@ a{
   background: url('/assets/airplane.jpg') no-repeat center center/cover;
   z-index: -1; /* Derrière tout le contenu */
 }
+
+.nav-identifier {
+  padding-top: 2px;
+  padding-left: 6px;
+}
