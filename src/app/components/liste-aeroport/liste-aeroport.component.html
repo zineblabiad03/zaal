@@ -73,7 +73,7 @@
                     </div>
                     <p class="duration"> <strong>Durée :</strong> {{ segment.duration.replace('PT', '') }}</p>
                     <div class="segment">
-                        <p class="aeroport"> <strong>Arrivée :</strong> {{ segment.departure.at | date:'yyyy-MM-dd à HH' }}H{{ segment.departure.at | date:'mm' }}M</p>
+                        <p class="aeroport"> <strong>Arrivée :</strong> {{ segment.arrival.at | date:'yyyy-MM-dd à HH' }}H{{ segment.arrival.at | date:'mm' }}M</p>
                         <p class="aeroport"> <strong>Aéroport :</strong> {{ segment.arrival.iataCode }} </p>
                     </div>
                 </div>
